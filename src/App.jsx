@@ -1,5 +1,6 @@
 import "./App.css";
-
+import CombineProfilePage from "./components/CombineProfilePage";
+import MyFooter from "./components/MyFooter";
 function App() {
   return (
     <>
