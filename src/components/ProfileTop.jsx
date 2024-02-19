@@ -2,6 +2,9 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import profileTopImg from "../assets/profileBgTop.png";
 import profileUserPic from "../assets/Bitmoji.png";
+import MyAnalisi from "./MyAnalisi";
+import MyRisorse from "./MyRisorse";
+import MyAttivita from "./MYAttivita";
 
 const ProfileTop = () => {
   return (
@@ -91,6 +94,9 @@ const ProfileTop = () => {
             </Row>
           </Container>
         </Col>
+        <MyAnalisi />
+        <MyRisorse />
+        <MyAttivita />
       </Row>
     </Col>
   );
