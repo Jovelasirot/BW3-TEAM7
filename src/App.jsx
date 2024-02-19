@@ -1,5 +1,4 @@
 import "./App.css";
-import ProfileTop from "./components/ProfileTop";
 
 function App() {
   return (
