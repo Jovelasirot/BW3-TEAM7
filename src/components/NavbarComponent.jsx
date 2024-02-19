@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from "react-router-dom";
+import LogoNav from "../assets/LogoNav.png";
 
 function NavbarComponent() {
   return (
@@ -15,7 +16,7 @@ function NavbarComponent() {
             <Col className="d-flex flex-row mt-1">
               <span className="me-1 mt-1">
                 <img
-                  src="squaredlogo.png"
+                  src={LogoNav}
                   width="35"
                   height="35"
                   className="d-inline-block align-top"

@@ -6,7 +6,7 @@ const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 const pasqualetoken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzNGU4YzI0ZjYwNTAwMTkzN2Q0ODMiLCJpYXQiOjE3MDgzNDc3NDcsImV4cCI6MTcwOTU1NzM0N30.mthqNljgtCYQEBuKoZKcMpN6a22wDf15iDkgXjJsAoY";
 const jovelToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMGRhMjI0ZjYwNTAwMTkzN2Q0NGIiLCJpYXQiOjE3MDgzMzA0MDIsImV4cCI6MTcwOTU0MDAwMn0.LYG5z94VApAqELv2LvNngtihtlh6Kyrv-RHbX7gxv0M";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzYWEzMzI0ZjYwNTAwMTkzN2Q0YmEiLCJpYXQiOjE3MDgzNzA0ODMsImV4cCI6MTcwOTU4MDA4M30.jqoAheaxMJoqyttRxskMe0OT7NdOmGfNE_i-sfS_sZo";
 const michelaToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTZjNzI0ZjYwNTAwMTkzN2Q0NmMiLCJpYXQiOjE3MDgzMzI3NDQsImV4cCI6MTcwOTU0MjM0NH0.iLEv5uw64zS02f1yE-pYpnFtV3SUF3TBPtkQgQrr8ik";
 const robertaToken =
@@ -32,6 +32,35 @@ export const addUserData = (token) => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const editData = (userId, expId, token, newData) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${jovelToken}`,
+          },
+          body: JSON.stringify(newData),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Experience updated successfully:", data);
+      } else {
+        console.log("Error updating experience");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     } finally {
       dispatch({ type: TURN_OFF_SPINNER });
     }

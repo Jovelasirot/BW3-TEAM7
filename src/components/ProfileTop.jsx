@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { addUserData } from "../redux/actions/actions";
+import smEpiceLogo from "../assets/epicodeschool_logo.jpg";
+import smLavoratorePrivato from "../assets/lavoratore_privato_logo.jpg";
 
 const pasqualetoken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzNGU4YzI0ZjYwNTAwMTkzN2Q0ODMiLCJpYXQiOjE3MDgzNDc3NDcsImV4cCI6MTcwOTU1NzM0N30.mthqNljgtCYQEBuKoZKcMpN6a22wDf15iDkgXjJsAoY";
@@ -98,8 +100,22 @@ const ProfileTop = () => {
               </div>
             </Col>
             <Col>
-              <p>Lavoratore Privato</p>
-              <p>EPICODE</p>
+              <div className="d-flex align-items-center ">
+                <img
+                  src={smLavoratorePrivato}
+                  alt="smLavoratorePrivato"
+                  style={{ height: "40px" }}
+                />
+                <p className="mb-0 ms-3">Lavoratore Privato</p>
+              </div>
+              <div className="d-flex align-items-center ">
+                <img
+                  src={smEpiceLogo}
+                  alt="smEpiceLogo"
+                  style={{ height: "50px" }}
+                />
+                <p className="mb-0 ms-1">EPICODE</p>
+              </div>
             </Col>
           </Row>
         </Col>
