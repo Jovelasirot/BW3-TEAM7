@@ -50,7 +50,7 @@ const ProfileTop = () => {
               Disponibile per
             </Button>
             <Button
-              className="rounded-5 border border-2 border-secondary me-2 bg-opacity-10 bg-secondary"
+              className="rounded-5 border border-2 border-secondary me-2 bg-opacity-10 bg-secondary text-secondary "
               variant="muted"
             >
               Aggiungi sezione del profilo
