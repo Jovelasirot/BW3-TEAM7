@@ -1,11 +1,15 @@
 import "./App.css";
 import Fetch from "./components/Fetch";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CombineProfilePage from "./components/CombineProfilePage";
+import NavbarComponent from "./components/NavbarComponent";
+
 function App() {
   return (
     <BrowserRouter>
+      <NavbarComponent />
       <Routes>
-        <Route path="/" element={<Fetch />} />
+        <Route path="/" element={<CombineProfilePage />} />
         <Route path="/:id" element={<Fetch />} />
       </Routes>
     </BrowserRouter>

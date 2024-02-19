@@ -1,4 +1,4 @@
-import "./MyFooter.css";
+import "./style/MyFooter.css";
 import { Col, Row, NavDropdown } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
