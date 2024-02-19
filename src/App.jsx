@@ -7,11 +7,13 @@ import NavbarComponent from "./components/NavbarComponent";
 function App() {
   return (
     <BrowserRouter>
-      <NavbarComponent />
-      <Routes>
-        <Route path="/" element={<CombineProfilePage />} />
-        <Route path="/:id" element={<Fetch />} />
-      </Routes>
+      <div className="bg-light">
+        <NavbarComponent />
+        <Routes>
+          <Route path="/" element={<CombineProfilePage />} />
+          <Route path="/:id" element={<Fetch />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

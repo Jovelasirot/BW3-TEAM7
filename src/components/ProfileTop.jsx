@@ -9,7 +9,7 @@ import MyAttivita from "./MYAttivita";
 const ProfileTop = () => {
   return (
     <Col className="col-9">
-      <Row className="flex-column gy-3 rounded-2 border border-muted overflow-auto">
+      <Row className="flex-column gy-3 rounded-2 border border-muted overflow-auto mt-2">
         <Col className="p-0 position-relative mt-0  mb-4">
           <img
             src={profileTopImg}
@@ -94,9 +94,17 @@ const ProfileTop = () => {
             </Row>
           </Container>
         </Col>
-        <MyAnalisi />
-        <MyRisorse />
-        <MyAttivita />
+      </Row>
+      <Row className="flex-column gy-4 mt-2 ">
+        <Col className="px-0">
+          <MyAnalisi />
+        </Col>
+        <Col className="px-0">
+          <MyRisorse />
+        </Col>
+        <Col className="px-0">
+          <MyAttivita />
+        </Col>
       </Row>
     </Col>
   );
