@@ -5,15 +5,15 @@ import profileUserPic from "../assets/Bitmoji.png";
 
 const ProfileTop = () => {
   return (
-    <Container>
+    <Col className="col-9">
       <Row className="flex-column gy-3 rounded-2 border border-muted overflow-auto">
-        <Col className="p-0 position-relative mt-0 ">
+        <Col className="p-0 position-relative mt-0  mb-4">
           <img
             src={profileTopImg}
             alt=""
             className="img-fluid w-100 z-0 h-100 "
           />
-          <div className="z-1 position-absolute top-50 start-0 translate-right bg-dark border border-3 border-light rounded-circle d-flex  ms-4 overflow-auto ">
+          <div className="z-1 position-absolute top-50 start-0 translate-right bg-dark border border-3 border-light rounded-circle d-flex  ms-4 overflow-auto">
             <img
               src={profileUserPic}
               alt=""
@@ -21,7 +21,7 @@ const ProfileTop = () => {
             />
           </div>
         </Col>
-        <Col className="text-end mb-4 ">
+        <Col className="text-end mb-5 ">
           <i className="bi bi-pen fs-4 text-muted"></i>
         </Col>
         <Col className="">
@@ -92,7 +92,7 @@ const ProfileTop = () => {
           </Container>
         </Col>
       </Row>
-    </Container>
+    </Col>
   );
 };
 
