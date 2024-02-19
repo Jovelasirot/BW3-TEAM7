@@ -1,4 +1,19 @@
 #root {
   margin: 0 auto;
   padding: 2rem;
+  background-color: grey;
+}
+
+.avatar {
+  width: 50px;
+  border-radius: 100%;
+}
+
+section {
+  background-color: white;
+  border-radius: 8px;
+}
+
+#adv {
+  width: 100%;
 }
