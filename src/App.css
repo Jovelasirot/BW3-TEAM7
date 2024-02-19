@@ -26,3 +26,17 @@
   text-decoration: underline;
   color: darkgoldenrod;
 }
+
+.avatar {
+  width: 50px;
+  border-radius: 100%;
+}
+
+section {
+  background-color: white;
+  border-radius: 8px;
+}
+
+#adv {
+  width: 100%;
+}
