@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
+import { Link } from "react-router-dom";
 
 function NavbarComponent() {
   return (
@@ -88,21 +89,21 @@ function NavbarComponent() {
                     <Dropdown>
                       <Dropdown.Toggle className="bg-white border border-0"></Dropdown.Toggle>
                       <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1">
+                        <Link className="nav-link ms-3" to={"profile/Filippo"}>
                           Filippo Borelli
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
+                        </Link>
+                        <Link className="nav-link ms-3" to={"profile/Jovel"}>
                           Jovel Asirot
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
+                        </Link>
+                        <Link className="nav-link ms-3" to={"profile/Pasquale"}>
                           Pasquale Andriano
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
+                        </Link>
+                        <Link className="nav-link ms-3" to={"profile/Michela"}>
                           Michela Vivacqua
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-3">
+                        </Link>
+                        <Link className="nav-link ms-3" to={"profile/Roberta"}>
                           Roberta Stira
-                        </Dropdown.Item>
+                        </Link>
                       </Dropdown.Menu>
                     </Dropdown>
                   </p>

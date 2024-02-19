@@ -1,5 +1,5 @@
 import "./App.css";
-import Fetch from "./components/Fetch";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
@@ -10,8 +10,7 @@ function App() {
       <div className="bg-light">
         <NavbarComponent />
         <Routes>
-          <Route path="/" element={<CombineProfilePage />} />
-          <Route path="/:id" element={<Fetch />} />
+          <Route path="/profile/:username" element={<CombineProfilePage />} />
         </Routes>
       </div>
     </BrowserRouter>
@@ -19,13 +18,3 @@ function App() {
 }
 
 export default App;
-
-// import CombineProfilePage from "./components/CombineProfilePage";
-// import MyFooter from "./components/MyFooter";
-// function App() {
-//   return (
-//     <>
-//       {/* <h1 className="bg-secondary">Team 7 too good</h1> */}
-//       <CombineProfilePage />
-//       <MyFooter />
-//     </>)
