@@ -9,7 +9,7 @@ import MyAttivita from "./MYAttivita";
 const ProfileTop = () => {
   return (
     <Col className="col-9">
-      <Row className="flex-column gy-3 rounded-2 border border-muted overflow-auto mt-2">
+      <Row className="flex-column gy-3 rounded-2 border border-muted overflow-auto mt-2 bg-white ">
         <Col className="p-0 position-relative mt-0  mb-4">
           <img
             src={profileTopImg}
