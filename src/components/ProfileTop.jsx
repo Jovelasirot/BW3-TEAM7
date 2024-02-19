@@ -1,7 +1,6 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import profileTopImg from "../assets/profileBgTop.png";
-import profileUserPic from "../assets/Bitmoji.png";
 import MyAnalisi from "./MyAnalisi";
 import MyRisorse from "./MyRisorse";
 import MyAttivita from "./MYAttivita";
@@ -22,10 +21,12 @@ const filippoToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTI0MTI0ZjYwNTAwMTkzN2Q0NjAiLCJpYXQiOjE3MDgzMzE1ODUsImV4cCI6MTcwOTU0MTE4NX0.Th8sgbTW3CgZXXpWkdeUdUQLB-SZvMattf9ctCL5H8M";
 
 const ProfileTop = () => {
+  const [randomCollegamenti, setRandomCollegamenti] = useState(0);
   const paramas = useParams();
   const id = paramas.username;
+  const userData = useSelector((state) => state.user.content);
 
-  console.log(id);
+  console.log(`${id} data`, userData);
 
   const dispatch = useDispatch();
 
@@ -53,13 +54,12 @@ const ProfileTop = () => {
           return;
       }
       dispatch(addUserData(token));
+      const randomNum = Math.floor(Math.random() * 99) + 1;
+      setRandomCollegamenti(randomNum);
     };
 
     fetchUserData();
   }, [id, dispatch]);
-
-  const userData = useSelector((state) => state.user.content);
-  console.log(userData);
 
   return (
     <Col className="col-9">
@@ -103,7 +103,11 @@ const ProfileTop = () => {
             </Col>
           </Row>
         </Col>
+
         <Col>
+          <p className="fw-semibold text-secondary">
+            {randomCollegamenti} collegamenti
+          </p>
           <div>
             <Button variant="secondary" className="rounded-5 me-2 ">
               Disponibile per
