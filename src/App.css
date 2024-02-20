@@ -3,25 +3,21 @@
   padding: 0rem;
 }
 
-.icons
-{
-  color:rgb(70, 70, 70);
+.icons {
+  color: rgb(70, 70, 70);
   font-size: 22px;
-
 }
 
-.list
-{
+.list {
   text-decoration: none;
   list-style: none;
 }
 
-.navbar-text{
+.navbar-text {
   font-size: 12px;
-
 }
 
-.navbar-text2{
+.navbar-text2 {
   font-size: 13px;
   text-decoration: underline;
   color: darkgoldenrod;
@@ -39,4 +35,6 @@ section {
 
 #adv {
   width: 100%;
+  border-radius: 15px;
+  padding: 10px;
 }

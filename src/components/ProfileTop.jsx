@@ -3,13 +3,15 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import profileTopImg from "../assets/profileBgTop.png";
 import MyAnalisi from "./MyAnalisi";
 import MyRisorse from "./MyRisorse";
-import MyAttivita from "./MYAttivita";
+import MYEsperienza from "./MYEsperienza";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { addUserData } from "../redux/actions/actions";
 import smEpiceLogo from "../assets/epicodeschool_logo.jpg";
 import smLavoratorePrivato from "../assets/lavoratore_privato_logo.jpg";
+import EditProfile from "./EditProfile";
+import MYAttività from "./MYAttività";
 
 const pasqualetoken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzNGU4YzI0ZjYwNTAwMTkzN2Q0ODMiLCJpYXQiOjE3MDgzNDc3NDcsImV4cCI6MTcwOTU1NzM0N30.mthqNljgtCYQEBuKoZKcMpN6a22wDf15iDkgXjJsAoY";
@@ -27,8 +29,6 @@ const ProfileTop = () => {
   const paramas = useParams();
   const id = paramas.username;
   const userData = useSelector((state) => state.user.content);
-
-  console.log(`${id} data`, userData);
 
   const dispatch = useDispatch();
 
@@ -56,6 +56,10 @@ const ProfileTop = () => {
           return;
       }
 
+      if (Object.keys(userData).length !== 0) {
+        console.log(`${id} data`, userData);
+      }
+
       dispatch(addUserData(token));
       const randomNum = Math.floor(Math.random() * 99) + 1;
       setRandomCollegamenti(randomNum);
@@ -73,6 +77,7 @@ const ProfileTop = () => {
             alt=""
             className="img-fluid w-100 z-0 h-100 "
           />
+
           <div className="z-1 position-absolute top-50 start-0 translate-right bg-dark border border-3 border-light rounded-circle d-flex  ms-4 overflow-auto">
             <img
               src={userData.image}
@@ -82,7 +87,7 @@ const ProfileTop = () => {
           </div>
         </Col>
         <Col className="text-end mb-5 ">
-          <i className="bi bi-pen fs-4 text-muted"></i>
+          <EditProfile />
         </Col>
         <Col className="">
           <Row>
@@ -180,7 +185,10 @@ const ProfileTop = () => {
           <MyRisorse />
         </Col>
         <Col className="px-0">
-          <MyAttivita />
+          <MYAttività />
+        </Col>
+        <Col className="px-0">
+          <MYEsperienza />
         </Col>
       </Row>
     </Col>
