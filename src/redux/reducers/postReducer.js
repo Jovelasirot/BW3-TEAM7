@@ -1,15 +1,14 @@
 import {
-  ADD_USER_DATA,
+  UPDATE_USER_POST,
   TURN_OFF_SPINNER,
   TURN_ON_SPINNER,
 } from "../actions/actions";
 
 const initialState = {
-  content: {},
-  loading: false,
+  content: [],
 };
 
-const addUserData = (state = initialState, action) => {
+const addUserPost = (state = initialState, action) => {
   switch (action.type) {
     case TURN_ON_SPINNER:
       return {
@@ -21,16 +20,15 @@ const addUserData = (state = initialState, action) => {
         ...state,
         loading: false,
       };
-    case ADD_USER_DATA:
+    case UPDATE_USER_POST:
       return {
         ...state,
         content: action.payload,
         loading: false,
       };
-
     default:
       return state;
   }
 };
 
-export default addUserData;
+export default addUserPost;
