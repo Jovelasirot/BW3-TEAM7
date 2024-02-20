@@ -12,13 +12,17 @@ const MyAttivita = () => {
   const reduxPosts = useSelector((state) => state.post.content);
   const token = useSelector((state) => state.token.token) || undefined;
   const id = useSelector((state) => state.user.content._id) || undefined;
-  console.log("id", id);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(addUserPost(id, token));
-    setPosts(reduxPosts);
+    if (token !== undefined && id !== undefined) {
+      console.log("id", id);
+      dispatch(addUserPost(id, token));
+      setPosts(reduxPosts);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token !== undefined, id !== undefined]);
+  }, [token, id, dispatch]);
   return (
     <Card className="mb-2 p-0">
       <CardBody className="p-0 pt-3">

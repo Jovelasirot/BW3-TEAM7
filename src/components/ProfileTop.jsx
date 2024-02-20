@@ -28,8 +28,6 @@ const ProfileTop = () => {
   const id = paramas.username;
   const userData = useSelector((state) => state.user.content);
 
-  console.log(`${id} data`, userData);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,6 +53,8 @@ const ProfileTop = () => {
           console.log("no user");
           return;
       }
+
+      console.log(`${id} data`, userData);
 
       dispatch(addUserData(token));
       const randomNum = Math.floor(Math.random() * 99) + 1;
