@@ -104,13 +104,15 @@ function NavbarComponent() {
                         src={userData.image}
                         alt={userData.name}
                         className="rounded-circle"
-                        style={{ height: "40px" }}
+                        style={{ height: "35px" }}
                       />
                     </span>
 
-                    <Dropdown>
-                      <Dropdown.Toggle className="bg-white border border-0 p-0 ">
-                        Tu
+                    <Dropdown className="d-flex justify-content-center ">
+                      <Dropdown.Toggle className="bg-white border border-0 p-0 d-flex align-items-center">
+                        <span className="mb-0" style={{ fontSize: "12px" }}>
+                          Tu
+                        </span>
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
                         <Link className="nav-link ms-3" to={"profile/Filippo"}>
