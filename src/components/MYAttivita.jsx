@@ -1,9 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/MyAttivita.css";
-import { Card, CardBody, CardFooter } from "react-bootstrap";
+import { Button, Card, CardBody, CardFooter } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { newUserPost } from "../redux/actions/actions";
 
 import { addUserPost } from "../redux/actions/actions";
 
@@ -18,11 +19,18 @@ const MyAttivita = () => {
     if (token !== undefined && id !== undefined) {
       console.log("id", id);
       dispatch(addUserPost(id, token));
+
       setPosts(reduxPosts);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, id, dispatch]);
+
+  const handleimputChange = (e) => {
+    dispatch(newUserPost(id, token, "testo"));
+    console.log("cliccato");
+  };
+
   return (
     <Card className="mb-2 p-0">
       <CardBody className="p-0 pt-3">
@@ -33,12 +41,14 @@ const MyAttivita = () => {
           </div>
           <div className="d-flex align-items-top">
             <div className="me-1 mt-1">
-              <button
-                type="button"
+              <Button
                 className="rounded-pill px-3 py-1 btn btn-outline-primary me-2 fw-semibold sezioneprof"
+                onClick={() => {
+                  handleimputChange();
+                }}
               >
                 Crea un post
-              </button>
+              </Button>
             </div>
             <div className="ms-1 pencildivexp mb-2">
               <i className="bi bi-pencil-fill"></i>

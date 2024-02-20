@@ -2,6 +2,7 @@ import {
   UPDATE_USER_POST,
   TURN_OFF_SPINNER,
   TURN_ON_SPINNER,
+  ADD_USER_POST,
 } from "../actions/actions";
 
 const initialState = {
@@ -24,6 +25,12 @@ const addUserPost = (state = initialState, action) => {
       return {
         ...state,
         content: action.payload,
+        loading: false,
+      };
+    case ADD_USER_POST:
+      return {
+        ...state,
+        content: [...state.content, action.payload],
         loading: false,
       };
     default:
