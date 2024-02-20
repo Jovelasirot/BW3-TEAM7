@@ -18,8 +18,6 @@ const MyForm = () => {
     area: "",
   });
 
-  const { role, company, startDate, endDate, description, area } = formData;
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -27,16 +25,8 @@ const MyForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const experience = {
-      role,
-      company,
-      startDate,
-      endDate,
-      description,
-      area,
-    };
-
-    dispatch(newUserPost(id, token, experience));
+    // Pass the FormData object to the Redux action
+    dispatch(newUserPost(id, token, formData));
     console.log("Submitted");
   };
 
@@ -52,7 +42,7 @@ const MyForm = () => {
       </Form.Group>
 
       <Form.Group controlId="company">
-        <Form.Label>Compagnia</Form.Label>
+        <Form.Label>Company</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter company"
@@ -61,25 +51,25 @@ const MyForm = () => {
       </Form.Group>
 
       <Form.Group controlId="startDate">
-        <Form.Label>Inizio Attività</Form.Label>
+        <Form.Label>Start Date</Form.Label>
         <Form.Control
-          type="text"
+          type="date"
           placeholder="Enter start date"
           onChange={handleChange}
         />
       </Form.Group>
 
       <Form.Group controlId="endDate">
-        <Form.Label>Fine Attività</Form.Label>
+        <Form.Label>End Date</Form.Label>
         <Form.Control
-          type="text"
+          type="date"
           placeholder="Enter end date"
           onChange={handleChange}
         />
       </Form.Group>
 
       <Form.Group controlId="description">
-        <Form.Label>Descrizione</Form.Label>
+        <Form.Label>Description</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter description"

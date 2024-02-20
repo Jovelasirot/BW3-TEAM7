@@ -72,9 +72,8 @@ export const newUserPost = (id, token, experience) => {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            body: JSON.stringify(experience),
           },
+          body: experience,
         }
       );
       if (response.ok) {
