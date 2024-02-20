@@ -5,7 +5,7 @@ import { Container, Row } from "react-bootstrap";
 const CombineProfilePage = () => {
   return (
     <>
-      <Container className="bg bg-light">
+      <Container>
         <Row>
           <ProfileTop />
           <Sidebar />
