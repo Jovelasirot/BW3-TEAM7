@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { addUserData } from "../redux/actions/actions";
 import smEpiceLogo from "../assets/epicodeschool_logo.jpg";
 import smLavoratorePrivato from "../assets/lavoratore_privato_logo.jpg";
+import EditProfile from "./EditProfile";
 
 const pasqualetoken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzNGU4YzI0ZjYwNTAwMTkzN2Q0ODMiLCJpYXQiOjE3MDgzNDc3NDcsImV4cCI6MTcwOTU1NzM0N30.mthqNljgtCYQEBuKoZKcMpN6a22wDf15iDkgXjJsAoY";
@@ -75,6 +76,8 @@ const ProfileTop = () => {
             alt=""
             className="img-fluid w-100 z-0 h-100 "
           />
+          <EditProfile />
+
           <div className="z-1 position-absolute top-50 start-0 translate-right bg-dark border border-3 border-light rounded-circle d-flex  ms-4 overflow-auto">
             <img
               src={userData.image}
