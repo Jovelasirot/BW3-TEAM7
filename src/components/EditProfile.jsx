@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Modal from "react-bootstrap/Modal";
 
 const jovelToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzYWEzMzI0ZjYwNTAwMTkzN2Q0YmEiLCJpYXQiOjE3MDgzNzA0ODMsImV4cCI6MTcwOTU4MDA4M30.jqoAheaxMJoqyttRxskMe0OT7NdOmGfNE_i-sfS_sZo";
@@ -19,6 +20,7 @@ const idRoberta = "65d3115a24f605001937d450";
 
 function EditProfile() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -60,12 +62,28 @@ function EditProfile() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} />
-        <button type="submit">Carica file</button>
-      </form>
-    </div>
+    <>
+      <i
+        className="bi bi-pencil-square"
+        onClick={() => setShowModal(true)}
+        style={{ cursor: "pointer" }}
+      ></i>{" "}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        {" "}
+        <Modal.Dialog>
+          <Modal.Header closeButton>
+            <Modal.Title>Nuova immagine del profilo</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <form onSubmit={handleSubmit}>
+              <input type="file" onChange={handleFileChange} />
+              <button type="submit">Carica file</button>
+            </form>
+          </Modal.Body>
+        </Modal.Dialog>
+      </Modal>
+    </>
   );
 }
 
