@@ -117,7 +117,7 @@ const Sidebar = () => {
                   </Button>
                 </div>
               </div>
-              <div className="d-flex align-items-center mt-5">
+              <div className="d-flex align-items-center mt-4">
                 <img src={avatarJovel} alt="avatar" className="avatar" />
                 <h6 className="ms-2">Jovel Asirot</h6>
               </div>
