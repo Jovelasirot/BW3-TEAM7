@@ -54,7 +54,9 @@ const ProfileTop = () => {
           return;
       }
 
-      console.log(`${id} data`, userData);
+      if (Object.keys(userData).length !== 0) {
+        console.log(`${id} data`, userData);
+      }
 
       dispatch(addUserData(token));
       const randomNum = Math.floor(Math.random() * 99) + 1;
