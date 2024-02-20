@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import avatarRoberta from "../assets/robi.webp";
 import avatarPasquale from "../assets/pasquale.jpeg";
 import avatarFilippo from "../assets/Filippo.webp";
-import avatarJovel from "../assets/Jovel.webp";
+import avatarJovel from "../assets/jovel.jpeg";
 import pubblicità from "../assets/pubblicità.webp";
 
 const Sidebar = () => {

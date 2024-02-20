@@ -11,7 +11,7 @@ const robertaToken =
 const filippoToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTI0MTI0ZjYwNTAwMTkzN2Q0NjAiLCJpYXQiOjE3MDgzMzE1ODUsImV4cCI6MTcwOTU0MTE4NX0.Th8sgbTW3CgZXXpWkdeUdUQLB-SZvMattf9ctCL5H8M";
 
-const idJove = "65d30da224f605001937d44b";
+const idJovel = "65d30da224f605001937d44b";
 const idFilippo = "65d3124124f605001937d460";
 const idPasquale = "65d34e8c24f605001937d483";
 const idMichela = "65d316c724f605001937d46c";
@@ -38,11 +38,11 @@ function EditProfile() {
 
     try {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/${idPasquale}/picture`,
+        `https://striveschool-api.herokuapp.com/api/profile/${idJovel}/picture`,
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${pasqualetoken}`,
+            Authorization: `Bearer ${jovelToken}`,
           },
           body: formData,
         }
