@@ -80,16 +80,15 @@ function NavbarComponent() {
       </Dropdown>
       </p>
       </Col>
-      </Row>
-    </Col>
-     <Col lg={1} className='d-flex flex-column text-center g-0'>
+          <Col className='d-flex flex-column text-center g-0'>
         <span href="#"><i className="bi bi-grid-3x3-gap-fill icons"></i></span>
-      <span className='navbar-text py-0'>Per le aziende<i className="bi bi-caret-down-fill"></i>
-</span>
+      <span className='navbar-text py-0'>Per le aziende</span>
      </Col>
      <Col className=' navbar-text2'>
      <div>Prova Premium per 
      </div><div>0 EUR</div></Col>
+      </Row>
+    </Col>
       </Row>
       </Container>
 );
