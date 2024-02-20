@@ -33,7 +33,7 @@ const ProfileTop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUserData = () => {
       let token;
       switch (id) {
         case "Pasquale":
@@ -55,6 +55,7 @@ const ProfileTop = () => {
           console.log("no user");
           return;
       }
+
       dispatch(addUserData(token));
       const randomNum = Math.floor(Math.random() * 99) + 1;
       setRandomCollegamenti(randomNum);
