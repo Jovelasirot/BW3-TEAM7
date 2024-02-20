@@ -46,8 +46,7 @@ export const addUserData = (token) => {
 export const editData = (userId, expId, token, newData) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: TURN_ON_SPINNER }); // Turn on spinner before making the request
-
+      dispatch({ type: TURN_ON_SPINNER });
       const response = await fetch(
         `https://striveschool-api.herokuapp.com/api/profile/`,
         {

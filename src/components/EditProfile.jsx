@@ -8,6 +8,7 @@ const EditProfile = () => {
     email: user.email,
     name: user.name,
     bio: user.bio,
+    image: user.image,
   });
 
   const handleInputChange = (e) => {
@@ -46,8 +47,15 @@ const EditProfile = () => {
           />
         </div> */}
         <div>
-          <label>Bio:</label>
-          <input name="bio" value={formData.bio} onChange={handleInputChange} />
+          <label>Img:</label>
+          <input
+            className="drop"
+            src={formData.image}
+            alt="drop"
+            name="image"
+            value={formData.image}
+            onChange={handleInputChange}
+          />
         </div>
         <button type="submit">Save Changes</button>
       </form>

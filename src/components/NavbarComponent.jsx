@@ -9,9 +9,9 @@ import LogoNav from "../assets/LogoNav.png";
 
 function NavbarComponent() {
   return (
-    <Container fluid className="bg-white">
+    <Container fluid className="bg-white sticky-lg-top ">
       <Container>
-        <Row className="justify-content-between">
+        <Row className="justify-content-between align-items-center ">
           <Col>
             <Col className="d-flex flex-row mt-1">
               <span className="me-1 mt-1">
@@ -39,7 +39,7 @@ function NavbarComponent() {
 
           <Col>
             <Col>
-              <Row>
+              <Row className="align-items-center">
                 <Col className="d-flex flex-column text-center g-0">
                   <span href="#">
                     <i className="bi bi-house-door-fill icons py-0"></i>
@@ -70,19 +70,13 @@ function NavbarComponent() {
                   </span>
                   <span className="navbar-text py-0">Notifiche</span>
                 </Col>
-                <Col className=" d-flex flex-column text-center px-0">
-                  <span className="me-1 mt-1">
-                    <img
-                      src="squaredlogo.png"
-                      width="25"
-                      height="25"
-                      className="text-center"
-                      alt="ProfilePic"
-                    />
+                <Col className=" d-flex flex-column text-center px-0 border-end ">
+                  <span className="me-1 mt-1 ">
+                    <i className="bi bi-person-circle fs-5"></i>
                   </span>
 
                   <Dropdown>
-                    <Dropdown.Toggle className="bg-white border border-0"></Dropdown.Toggle>
+                    <Dropdown.Toggle className="bg-white border border-0 p-0 "></Dropdown.Toggle>
                     <Dropdown.Menu>
                       <Link className="nav-link ms-3" to={"profile/Filippo"}>
                         Filippo Borelli
@@ -102,15 +96,20 @@ function NavbarComponent() {
                     </Dropdown.Menu>
                   </Dropdown>
                 </Col>
-                <Col className="d-flex flex-column text-center g-0">
+                <Col className="d-flex flex-column text-center g-0 ms-1 ">
                   <span href="#">
                     <i className="bi bi-grid-3x3-gap-fill icons"></i>
                   </span>
-                  <span className="navbar-text py-0">
-                    Per le aziende <i className="bi bi-caret-down-fill"></i>
-                  </span>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      className="bg-white border border-0 p-0"
+                      style={{ fontSize: "12px" }}
+                    >
+                      Per le aziende
+                    </Dropdown.Toggle>
+                  </Dropdown>
                 </Col>
-                <Col className=" navbar-text2 mt-1">
+                <Col className=" navbar-text2 mt-1  ">
                   <div>Prova Premium per</div>
                   <div>0 EUR</div>
                 </Col>
