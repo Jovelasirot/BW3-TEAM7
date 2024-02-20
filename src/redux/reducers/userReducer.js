@@ -2,6 +2,8 @@ import {
   ADD_USER_DATA,
   TURN_OFF_SPINNER,
   TURN_ON_SPINNER,
+  UPDATE_USER_FAILURE,
+  UPDATE_USER_SUCCESS,
 } from "../actions/actions";
 
 const initialState = {
@@ -25,6 +27,16 @@ const addUserData = (state = initialState, action) => {
       return {
         ...state,
         content: action.payload,
+        loading: false,
+      };
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case UPDATE_USER_FAILURE:
+      return {
+        ...state,
         loading: false,
       };
     default:

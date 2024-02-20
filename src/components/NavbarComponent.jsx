@@ -15,17 +15,11 @@ function NavbarComponent() {
           <Col>
             <Col className="d-flex flex-row mt-1">
               <span className="me-1 mt-1">
-                <img
-                  src={LogoNav}
-                  width="35"
-                  height="35"
-                  className="d-inline-block align-top"
-                  alt="linkedinLogo"
-                />
+                <img src={LogoNav} width="35" height="35" alt="linkedinLogo" />
               </span>
 
               <span>
-                <Form inline className="mt-1">
+                <Form className="mt-1">
                   <InputGroup>
                     <InputGroup.Text id="basic-addon1" className="bg-primary">
                       <i className="bi bi-search"></i>
@@ -86,28 +80,27 @@ function NavbarComponent() {
                       alt="ProfilePic"
                     />
                   </span>
-                  <p>
-                    <Dropdown>
-                      <Dropdown.Toggle className="bg-white border border-0"></Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Link className="nav-link ms-3" to={"profile/Filippo"}>
-                          Filippo Borelli
-                        </Link>
-                        <Link className="nav-link ms-3" to={"profile/Jovel"}>
-                          Jovel Asirot
-                        </Link>
-                        <Link className="nav-link ms-3" to={"profile/Pasquale"}>
-                          Pasquale Andriano
-                        </Link>
-                        <Link className="nav-link ms-3" to={"profile/Michela"}>
-                          Michela Vivacqua
-                        </Link>
-                        <Link className="nav-link ms-3" to={"profile/Roberta"}>
-                          Roberta Stira
-                        </Link>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </p>
+
+                  <Dropdown>
+                    <Dropdown.Toggle className="bg-white border border-0"></Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Link className="nav-link ms-3" to={"profile/Filippo"}>
+                        Filippo Borelli
+                      </Link>
+                      <Link className="nav-link ms-3" to={"profile/Jovel"}>
+                        Jovel Asirot
+                      </Link>
+                      <Link className="nav-link ms-3" to={"profile/Pasquale"}>
+                        Pasquale Andriano
+                      </Link>
+                      <Link className="nav-link ms-3" to={"profile/Michela"}>
+                        Michela Vivacqua
+                      </Link>
+                      <Link className="nav-link ms-3" to={"profile/Roberta"}>
+                        Roberta Stira
+                      </Link>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </Col>
                 <Col className="d-flex flex-column text-center g-0">
                   <span href="#">
