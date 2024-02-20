@@ -5,7 +5,7 @@ import avatarMichela from "../assets/1705333174881.jpg";
 import Button from "react-bootstrap/Button";
 import avatarRoberta from "../assets/robi.webp";
 import avatarPasquale from "../assets/pasquale.jpeg";
-import avatarFilippo from "../assets/Filippo.webp";
+import avatarFilippo from "../assets/Filippo fixed.jpg";
 import avatarJovel from "../assets/jovel.jpeg";
 import pubblicità from "../assets/pubblicità.webp";
 

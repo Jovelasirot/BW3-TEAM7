@@ -1,15 +1,17 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/MyAttivita.css";
-import { Button, Card, CardBody, CardFooter } from "react-bootstrap";
+import { Button, Card, CardBody, CardFooter, Modal } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { newUserPost } from "../redux/actions/actions";
 
 import { addUserPost } from "../redux/actions/actions";
+import MyForm from "./MyForm";
 
 const MyAttivita = () => {
   const [posts, setPosts] = useState([]);
+  const [showForm, setShowForm] = useState(false);
   const reduxPosts = useSelector((state) => state.post.content);
   const token = useSelector((state) => state.token.token) || undefined;
   const id = useSelector((state) => state.user.content._id) || undefined;
@@ -26,11 +28,6 @@ const MyAttivita = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, id, dispatch]);
 
-  const handleimputChange = (e) => {
-    dispatch(newUserPost(id, token, "testo"));
-    console.log("cliccato");
-  };
-
   return (
     <Card className="mb-2 p-0">
       <CardBody className="p-0 pt-3">
@@ -42,14 +39,25 @@ const MyAttivita = () => {
           <div className="d-flex align-items-top">
             <div className="me-1 mt-1">
               <Button
-                className="rounded-pill px-3 py-1 btn btn-outline-primary me-2 fw-semibold sezioneprof"
-                onClick={() => {
-                  handleimputChange();
-                }}
+                className="rounded-pill px-3 py-1 btn btn-outline-primary me-2 fw-semibold text-dark"
+                onClick={() => setShowForm(true)}
               >
                 Crea un post
               </Button>
             </div>
+            <Modal show={showForm} onHide={() => setShowForm(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Crea un post</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <MyForm />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShowForm(false)}>
+                  Chiudi
+                </Button>
+              </Modal.Footer>
+            </Modal>
             <div className="ms-1 pencildivexp mb-2">
               <i className="bi bi-pencil-fill"></i>
             </div>
