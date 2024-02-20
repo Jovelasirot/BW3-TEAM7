@@ -4,8 +4,8 @@ import { Card, CardBody, CardFooter } from "react-bootstrap";
 
 const MyAnalisi = () => {
   return (
-    <Card className="mb-2">
-      <CardBody className="p-0 ps-4 pt-4">
+    <Card className="mb-2 ">
+      <CardBody className="p-0 ps-3 pt-2">
         <div>
           <h3 className="mb-0 fw-bold">Analisi</h3>
           <div className="d-flex align-items-baseline opacity-50 ">
@@ -18,7 +18,7 @@ const MyAnalisi = () => {
         <div>
           <div className="d-flex align-items-baseline">
             <div>
-              <i className="bi bi-people-fill"></i>
+              <i className="bi bi-pen "></i>
             </div>
             <div className="ms-2">
               <p className="fw-semibold mb-0 text-underline">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
 const jovelToken =
@@ -64,12 +65,11 @@ function EditProfile() {
   return (
     <>
       <i
-        className="bi bi-pencil-square"
+        className="bi bi-pen fs-5 "
         onClick={() => setShowModal(true)}
         style={{ cursor: "pointer" }}
-      ></i>{" "}
+      ></i>
       <Modal show={showModal} onHide={() => setShowModal(false)}>
-        {" "}
         <Modal.Dialog>
           <Modal.Header closeButton>
             <Modal.Title>Nuova immagine del profilo</Modal.Title>
@@ -78,7 +78,9 @@ function EditProfile() {
           <Modal.Body>
             <form onSubmit={handleSubmit}>
               <input type="file" onChange={handleFileChange} />
-              <button type="submit">Carica file</button>
+              <Button type="submit" variant="secondary">
+                Carica file
+              </Button>
             </form>
           </Modal.Body>
         </Modal.Dialog>

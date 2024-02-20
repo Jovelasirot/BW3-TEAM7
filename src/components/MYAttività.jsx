@@ -6,20 +6,20 @@ const MYAttività = () => {
   return (
     <Card className="mb-2 p-0">
       <CardBody className="p-0 pt-3">
-        <div className="d-flex justify-content-between ms-4 mt-3 me-4">
+        <div className="d-flex justify-content-between ms-4  me-4">
           <div>
             <h3 className="mb-0 fw-bold">Attività</h3>
             <p className="fw-semibold text-underline follower">0 follower</p>
           </div>
           <div className="d-flex align-items-top">
-            <div className="me-1 mt-1">
+            <div className="me-1">
               <Button className="rounded-pill px-3 py-1 btn btn-outline-primary me-2 fw-semibold text-dark">
                 Crea un post
               </Button>
             </div>
 
-            <div className="ms-1 pencildivexp mb-2">
-              <i className="bi bi-pencil-fill"></i>
+            <div className="ms-1 mt-1">
+              <i className="bi bi-pen "></i>
             </div>
           </div>
         </div>

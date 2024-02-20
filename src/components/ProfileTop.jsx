@@ -77,7 +77,6 @@ const ProfileTop = () => {
             alt=""
             className="img-fluid w-100 z-0 h-100 "
           />
-          <EditProfile />
 
           <div className="z-1 position-absolute top-50 start-0 translate-right bg-dark border border-3 border-light rounded-circle d-flex  ms-4 overflow-auto">
             <img
@@ -88,7 +87,7 @@ const ProfileTop = () => {
           </div>
         </Col>
         <Col className="text-end mb-5 ">
-          <i className="bi bi-pen fs-4 text-muted"></i>
+          <EditProfile />
         </Col>
         <Col className="">
           <Row>
