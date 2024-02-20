@@ -1,6 +1,15 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/MyAttivita.css";
-import { Button, Card, CardBody, CardFooter, Modal } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Modal,
+  Row,
+  Col,
+  Image,
+} from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -8,8 +17,9 @@ import { newUserPost } from "../redux/actions/actions";
 
 import { addUserPost } from "../redux/actions/actions";
 import MyForm from "./MyForm";
+import pictureExperience from "../assets/esperienzepx.avif";
 
-const MyAttivita = () => {
+const MyEsperienza = () => {
   const [posts, setPosts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const reduxPosts = useSelector((state) => state.post.content);
@@ -27,14 +37,13 @@ const MyAttivita = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, id, dispatch]);
-
+  console.log(posts);
   return (
     <Card className="mb-2 p-0">
       <CardBody className="p-0 pt-3">
         <div className="d-flex justify-content-between ms-4 mt-3 me-4">
           <div>
-            <h5 className="mb-0 fw-bold">Attività</h5>
-            <p className="fw-semibold text-underline follower">0 follower</p>
+            <h3 className="mb-0 fw-bold">Esperienze</h3>
           </div>
           <div className="d-flex align-items-top">
             <div className="me-1 mt-1">
@@ -42,7 +51,7 @@ const MyAttivita = () => {
                 className="rounded-pill px-3 py-1 btn btn-outline-primary me-2 fw-semibold text-dark"
                 onClick={() => setShowForm(true)}
               >
-                Crea un post
+                <i className="bi bi-plus-lg"></i>
               </Button>
             </div>
             <Modal show={showForm} onHide={() => setShowForm(false)}>
@@ -63,16 +72,31 @@ const MyAttivita = () => {
             </div>
           </div>
         </div>
-        <div className="ms-4">
-          <p className="mb-0 fw-semibold lh">Non hai ancora pubblicato nulla</p>
-          <p>I post che condividi appariranno qui</p>
-        </div>
+        <Row>
+          {posts.map((post) => (
+            <Col key={post._id} className="col-12 mt-4 d-flex ms-2">
+              <Image
+                style={{ width: "150px", height: "150px" }}
+                src={pictureExperience}
+                className="rounded-circle  "
+              />
+              <div className=" ms-3">
+                <h5>{post.role}</h5>
+                <p>{post.description}</p>
+                <p>Incominciato il: {post.startDate.split("T")[0]}</p>
+                <p>
+                  Terminato il:{" "}
+                  {post.endDate !== null
+                    ? post.endDate.split("T")[0]
+                    : "Fino ad Oggi..."}
+                </p>
+              </div>
+            </Col>
+          ))}
+        </Row>
       </CardBody>
-      <CardFooter className="box-gray fw-semibold">
-        <p className="mostra mb-0">Mostra tutte le attività ➝</p>
-      </CardFooter>
     </Card>
   );
 };
 
-export default MyAttivita;
+export default MyEsperienza;

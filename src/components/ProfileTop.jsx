@@ -3,7 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import profileTopImg from "../assets/profileBgTop.png";
 import MyAnalisi from "./MyAnalisi";
 import MyRisorse from "./MyRisorse";
-import MyAttivita from "./MYAttivita";
+import MYEsperienza from "./MYEsperienza";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -11,6 +11,7 @@ import { addUserData } from "../redux/actions/actions";
 import smEpiceLogo from "../assets/epicodeschool_logo.jpg";
 import smLavoratorePrivato from "../assets/lavoratore_privato_logo.jpg";
 import EditProfile from "./EditProfile";
+import MYAttività from "./MYAttività";
 
 const pasqualetoken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzNGU4YzI0ZjYwNTAwMTkzN2Q0ODMiLCJpYXQiOjE3MDgzNDc3NDcsImV4cCI6MTcwOTU1NzM0N30.mthqNljgtCYQEBuKoZKcMpN6a22wDf15iDkgXjJsAoY";
@@ -185,7 +186,10 @@ const ProfileTop = () => {
           <MyRisorse />
         </Col>
         <Col className="px-0">
-          <MyAttivita />
+          <MYAttività />
+        </Col>
+        <Col className="px-0">
+          <MYEsperienza />
         </Col>
       </Row>
     </Col>
