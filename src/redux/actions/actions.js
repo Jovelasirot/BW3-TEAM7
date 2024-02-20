@@ -48,7 +48,7 @@ export const editData = (userId, expId, token, newData) => {
     try {
       dispatch({ type: TURN_ON_SPINNER });
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/profile/`,
+        ` https://striveschool-api.herokuapp.com/api/profile/65d30da224f605001937d44b/picture `,
         {
           method: "PUT",
           headers: {
