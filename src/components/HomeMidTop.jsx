@@ -31,7 +31,10 @@ const HomeMidTop = () => {
   };
 
   return (
-    <Row className="flex-column p-2 bg-white mt-3 border border-muted rounded-2">
+    <Row
+      className="flex-column p-2 bg-white mt-3 border border-muted rounded-2 gy-3"
+      style={{ height: "150px" }}
+    >
       <Col className="d-flex align-items-center">
         {profileImage ? (
           <div className="rounded-circle overflow-auto ">
@@ -48,19 +51,27 @@ const HomeMidTop = () => {
           ></Form.Control>
         </Form>
       </Col>
-      <Col className="d-flex fs-5 justify-content-between ">
-        <div className="d-flex" onClick={() => setShowModal(true)}>
-          <i className="bi bi-image text-secondary "></i>
-          <span className="ms-2">Contenuti multimediali</span>
-        </div>
-        <div className="d-flex">
-          <i className="bi bi-calendar3 text-warning"></i>
-          <span className="ms-2">Evento</span>
-        </div>
-        <div className="d-flex">
-          <i className="bi bi-layout-text-window text-danger"></i>
-          <span className="ms-2">Scrivi un articolo</span>
-        </div>
+
+      <Col>
+        <Container>
+          <div className="d-flex fs-6 justify-content-between  ">
+            <div
+              className="d-flex addImg rounded-1 p-1 "
+              onClick={() => setShowModal(true)}
+            >
+              <i className="bi bi-image text-secondary "></i>
+              <span className="ms-2">Contenuti multimediali</span>
+            </div>
+            <div className="d-flex p-1 ">
+              <i className="bi bi-calendar3 text-warning"></i>
+              <span className="ms-2">Evento</span>
+            </div>
+            <div className="d-flex p-1 ">
+              <i className="bi bi-layout-text-window text-danger"></i>
+              <span className="ms-2">Scrivi un articolo</span>
+            </div>
+          </div>
+        </Container>
       </Col>
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>

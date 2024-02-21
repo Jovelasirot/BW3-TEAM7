@@ -86,5 +86,10 @@ $secondary: #0A66C2;
     &:hover,&:active {
       opacity: 1;}
   }
+  .addImg{
+    cursor: pointer;
+    &:hover {
+      background-color: #e4e4e4; }
+  }
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
