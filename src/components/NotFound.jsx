@@ -1,17 +1,17 @@
 import { Col, Container } from "react-bootstrap";
+import Dino from "./Dino";
 
 const NotFound = () => {
   return (
     <Container>
-      <Col className="d-flex vh-100 justify-content-center flex-column align-items-center ">
-        <iframe
-          src="https://giphy.com/embed/1fnnX7RL2JrlUvII1V"
-          width="480"
-          height="480"
-          allowFullScreen
-        ></iframe>
-
-        <h1>404 error</h1>
+      <Col
+        xs={12}
+        className="d-flex vh-100 justify-content-center flex-column align-items-center "
+      >
+        <div>
+          <Dino />
+        </div>
+        <h1 className="fw-semibold">404 error - page not found</h1>
       </Col>
     </Container>
   );
