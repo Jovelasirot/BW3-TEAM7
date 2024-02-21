@@ -26,6 +26,7 @@ import pictureExperience from "../assets/esperienzepx.avif";
 
 const MyEsperienza = () => {
   const [showForm, setShowForm] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const reduxPosts = useSelector((state) => state.post.content);
   const token = useSelector((state) => state.token.token) || undefined;
   const id = useSelector((state) => state.user.content._id) || undefined;
@@ -35,11 +36,10 @@ const MyEsperienza = () => {
     if (token !== undefined && id !== undefined) {
       console.log("id", id);
       dispatch(addUserPost(id, token));
-      dispatch(saveHomePost(token));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, id]);
+  }, [token, id, dispatch]);
 
   if (reduxPosts.length !== 0) {
     console.log("Oggetto contenuti della fetch", reduxPosts);
@@ -80,27 +80,30 @@ const MyEsperienza = () => {
                 reduxPosts.map((post) => (
                   <Col
                     key={post._id}
-                    className="col-12 mt-4 d-flex  align-items-center border-bottom pb-2"
+                    className="col-12 mt-4 d-flex justify-content-between   align-items-center border-bottom pb-2"
                   >
-                    <Image
-                      style={{ width: "130px", height: "130px" }}
-                      src={pictureExperience}
-                      className="rounded-circle  "
-                    />
-                    <div className=" ps-3">
-                      <h5>{post.role}</h5>
-                      <p className="mb-0 text-muted">{post.description}</p>
-                      <p className="mb-0">
-                        {post.startDate.split("T")[0]} -{" "}
-                        {post.endDate !== null
-                          ? post.endDate.split("T")[0]
-                          : "Presente"}
-                      </p>
+                    <div className="d-flex ">
+                      <Image
+                        style={{ width: "130px", height: "130px" }}
+                        src={pictureExperience}
+                        className="rounded-circle  "
+                      />
+                      <div className=" ps-3">
+                        <h5>{post.role}</h5>
+                        <p className="mb-0 text-muted">{post.description}</p>
+                        <p className="mb-0">
+                          {post.startDate.split("T")[0]} -{" "}
+                          {post.endDate !== null
+                            ? post.endDate.split("T")[0]
+                            : "Presente"}
+                        </p>
+                      </div>
                     </div>
                     <div>
                       <Button
                         onClick={() => {
                           dispatch(deleteUserPost(id, token, post._id));
+                          dispatch(addUserPost(id, token));
                           console.log("post eliminato", post._id);
                         }}
                       >
