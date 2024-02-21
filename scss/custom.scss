@@ -81,5 +81,10 @@ $secondary: #0A66C2;
       background-color: #e4e4e4; }
   }
 
+  .iconsAnima{
+    opacity: 0.8;
+    &:hover,&:active {
+      opacity: 1;}
+  }
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';

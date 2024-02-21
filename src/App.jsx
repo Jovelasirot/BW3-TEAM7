@@ -17,7 +17,7 @@ function App() {
           <Route path="/profile/:username" element={<CombineProfilePage />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/job" element={<Job />} />
+          <Route path="/Lavoro" element={<Job />} />
         </Routes>
         <Messagistica />
       </div>
