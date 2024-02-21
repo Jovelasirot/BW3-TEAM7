@@ -18,48 +18,48 @@ const SinglePost = () => {
     }
   }, [token]);
   return (
-    <Container className="bg-white rounded-1  border">
-      <Row className="flex-column">
-        {post.map((post) => (
-          <div key={post._id}>
-            <Col className="d-flex justify-content-between">
-              <div className="d-flex align-items-center">
-                <div>
-                  <i className="bi bi-person fs-1 me-2"></i>
-                </div>
-                <div>
-                  <p className="mb-0">{post.user.username}</p>
-
-                  <p className="mb-0">{post.createdAt}</p>
-                </div>
+    // <Container className="bg-white rounded-1  border">
+    <Row className="flex-column bg-white rounded-1  border">
+      {post.map((post) => (
+        <div key={post._id}>
+          <Col className="d-flex justify-content-between">
+            <div className="d-flex align-items-center">
+              <div>
+                <i className="bi bi-person fs-1 me-2"></i>
               </div>
               <div>
-                <i className="bi bi-three-dots"></i>
-                <i className="bi bi-x-lg"></i>
+                <p className="mb-0">{post.user.username}</p>
+
+                <p className="mb-0">{post.createdAt}</p>
               </div>
-            </Col>
-            <Col>{post.text}</Col>
-          </div>
-        ))}
-        <Col className="d-flex justify-content-between">
-          <div className="d-flex align-items-center">
-            <div>
-              <i className="bi bi-person fs-1 me-2"></i>
             </div>
             <div>
-              <p className="mb-0"></p>
-              <p className="mb-0">Role placeholder</p>
-              <p className="mb-0">Date placeholder</p>
+              <i className="bi bi-three-dots"></i>
+              <i className="bi bi-x-lg"></i>
             </div>
+          </Col>
+          <Col>{post.text}</Col>
+        </div>
+      ))}
+      <Col className="d-flex justify-content-between">
+        <div className="d-flex align-items-center">
+          <div>
+            <i className="bi bi-person fs-1 me-2"></i>
           </div>
           <div>
-            <i className="bi bi-three-dots"></i>
-            <i className="bi bi-x-lg"></i>
+            <p className="mb-0"></p>
+            <p className="mb-0">Role placeholder</p>
+            <p className="mb-0">Date placeholder</p>
           </div>
-        </Col>
-        <Col>user text</Col>
-      </Row>
-    </Container>
+        </div>
+        <div>
+          <i className="bi bi-three-dots"></i>
+          <i className="bi bi-x-lg"></i>
+        </div>
+      </Col>
+      <Col>user text</Col>
+    </Row>
+    // </Container>
   );
 };
 
