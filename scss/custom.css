@@ -15,6 +15,18 @@
   background-color: #e4e4e4;
 }
 
+.deletePost {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.deletePost:hover {
+  background-color: #e4e4e4;
+}
+
 .miniNavText {
   font-size: 14px;
 }

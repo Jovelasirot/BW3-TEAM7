@@ -57,16 +57,18 @@ const SinglePost = () => {
                 <p className="mb-0">{post.text}</p>
               </div>
             </div>
-            <div>
-              <Button
-                onClick={() => {
-                  handleDelete(post._id);
-                }}
-              >
-                Delete
-              </Button>
-              <i className="bi bi-three-dots"></i>
-              <i className="bi bi-x-lg"></i>
+            <div className="d-flex align-content-center ">
+              <div>
+                <i className="bi bi-three-dots me-2 "></i>
+              </div>
+              <div>
+                <i
+                  className="bi bi-x-lg deletePost "
+                  onClick={() => {
+                    handleDelete(post._id);
+                  }}
+                ></i>
+              </div>
             </div>
           </Col>
         </Container>

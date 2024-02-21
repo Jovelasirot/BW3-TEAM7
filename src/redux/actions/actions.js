@@ -286,6 +286,7 @@ export const deletePost = (postId, userToken) => {
         const data = await response.json();
       } else {
         console.log("Error");
+        alert("Puoi eliminare solo i tuoi post");
       }
     } catch (error) {
       console.log(error);
