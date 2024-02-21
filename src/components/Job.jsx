@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 
 import { Container, Row, Col } from "react-bootstrap";
-=======
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
->>>>>>> main
 import HomeDxFooter from "./HomeDxFooter";
 import JobSidebarSx from "./JobSidebarSx";
 
 function Job() {
   return (
-<<<<<<< HEAD
       <Container fluid>
         <Row>
           <JobSidebarSx/>
@@ -19,18 +13,6 @@ function Job() {
           </Col>
         </Row>
       </Container>
-=======
-    // <BrowserRouter>
-    <Container>
-      <Row>
-        {/* <Routes>
-            <Route />
-          </Routes> */}
-        <HomeDxFooter />
-      </Row>
-    </Container>
-    // </BrowserRouter>
->>>>>>> main
   );
 }
 
