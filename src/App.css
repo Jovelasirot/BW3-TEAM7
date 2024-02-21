@@ -39,7 +39,6 @@ section {
   padding: 10px;
 }
 
-
 .sidebarText {
   font-size: 16px;
 }
@@ -58,19 +57,20 @@ section {
   color: gray;
 }
 
-
-.sidebarIcons{
+.sidebarIcons {
   font-size: 13px;
   color: rgb(197, 152, 29);
-
 }
 
-.sidebarIcons1{
+.sidebarIcons1 {
   font-size: 13px;
   color: rgb(104, 104, 104);
-
 }
 
-.hashtag{
+.hashtag {
   font-size: 18px;
+}
+
+#HomeDxFooter {
+  color: grey;
 }

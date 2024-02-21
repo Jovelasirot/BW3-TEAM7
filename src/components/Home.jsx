@@ -9,8 +9,7 @@ const Home = () => {
         <SidebarHomeSx/>
         {/* sidebar sx col 2
         sez centrale col 7 */}
-        <SidebarHomeDx />
-        {/* col 3 */}
+        <SidebarHomeDx /> {/* col 3 */}
       </Row>
     </Container>
   );

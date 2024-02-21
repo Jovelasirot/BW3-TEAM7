@@ -5,6 +5,7 @@ import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
 import Home from "./components/Home";
 import HomeMid from "./components/HomeMid";
+import NotFound from "./components/NotFound";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<HomeMid />} />
           <Route path="/profile/:username" element={<CombineProfilePage />} />
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Messaggistica/>
       </div>
