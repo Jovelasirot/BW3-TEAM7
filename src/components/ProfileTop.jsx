@@ -27,8 +27,10 @@ const filippoToken =
 const ProfileTop = () => {
   const [randomCollegamenti, setRandomCollegamenti] = useState(0);
   const paramas = useParams();
+
   const id = paramas.username;
   const userData = useSelector((state) => state.user.content);
+  const [user, setUser] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -55,18 +57,17 @@ const ProfileTop = () => {
           console.log("no user");
           return;
       }
-
-      if (Object.keys(userData).length !== 0) {
-        console.log(`${id} data`, userData);
-      }
-
       dispatch(addUserData(token));
+      setUser(userData);
       const randomNum = Math.floor(Math.random() * 99) + 1;
       setRandomCollegamenti(randomNum);
     };
 
     fetchUserData();
-  }, [id, dispatch]);
+    if (userData.length !== 0) {
+      console.log(`${id} data`, userData);
+    }
+  }, [id]);
 
   return (
     <Col className="col-9">
