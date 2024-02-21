@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import HomeMid from "./components/HomeMid";
 import NotFound from "./components/NotFound";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Messaggistica/>
       </div>
     </BrowserRouter>
   );

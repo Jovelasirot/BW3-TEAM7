@@ -4,6 +4,7 @@ import {
   TURN_ON_SPINNER,
   ADD_USER_POST,
   RESET_POST_DATA,
+  DELETE_USER_POST,
 } from "../actions/actions";
 
 const initialState = {
@@ -36,6 +37,12 @@ const addUserPost = (state = initialState, action) => {
       return {
         ...state,
         content: [...state.content, action.payload],
+        loading: false,
+      };
+    case DELETE_USER_POST:
+      return {
+        ...state,
+        content: state.content.filter((post) => post._id !== action.payload),
         loading: false,
       };
     default:

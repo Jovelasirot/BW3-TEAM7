@@ -38,3 +38,39 @@ section {
   border-radius: 15px;
   padding: 10px;
 }
+
+
+.sidebarText {
+  font-size: 16px;
+}
+
+.sidebarText1 {
+  font-size: 12px;
+}
+
+.sidebarText2 {
+  font-size: 12px;
+  color: gray;
+}
+
+.sidebarText3 {
+  font-size: 15px;
+  color: gray;
+}
+
+
+.sidebarIcons{
+  font-size: 13px;
+  color: rgb(197, 152, 29);
+
+}
+
+.sidebarIcons1{
+  font-size: 13px;
+  color: rgb(104, 104, 104);
+
+}
+
+.hashtag{
+  font-size: 18px;
+}
