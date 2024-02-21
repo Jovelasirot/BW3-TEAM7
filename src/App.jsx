@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
 import Home from "./components/Home";
-import HomeMid from "./components/HomeMid";
 import NotFound from "./components/NotFound";
 import Messagistica from "./components/Messaggistica";
 
@@ -17,6 +16,7 @@ function App() {
           <Route path="/profile/:username" element={<CombineProfilePage />} />
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/job" element={<Job/>}
         </Routes>
         <Messagistica />
       </div>
