@@ -143,7 +143,7 @@ export const saveHomePost = (token) => {
       );
       if (response.ok) {
         const data = await response.json();
-        const array = data.filter((post, id) => id > 750);
+        const array = data.filter((post, id) => id > 700);
         array.reverse();
         console.log("array", array);
         dispatch({ type: SAVE_HOME_POST, payload: array });
@@ -164,7 +164,7 @@ const editImage = (id, token, image) => {
       const response = await fetch(
         `https://striveschool-api.herokuapp.com/api/posts/${id}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -173,7 +173,7 @@ const editImage = (id, token, image) => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log("data", data);
+        console.log("image", data);
       } else {
         alert("Error");
       }
