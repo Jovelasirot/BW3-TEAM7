@@ -20,8 +20,16 @@ const SinglePost = () => {
   }, [token, dispatch]);
 
   const handleDelete = (postID) => {
-    dispatch(deletePost(postID, token));
-    dispatch(saveHomePost(token));
+    const resetConfirm = window.confirm(
+      "Sei sicuro di voler eliminare il post?"
+    );
+
+    if (resetConfirm) {
+      dispatch(deletePost(postID, token));
+      dispatch(saveHomePost(token));
+    } else {
+      console.log("Il post è statp eliminato");
+    }
   };
 
   return (
