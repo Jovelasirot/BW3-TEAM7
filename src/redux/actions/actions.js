@@ -164,7 +164,7 @@ const editImage = (id, token, image) => {
       const response = await fetch(
         `https://striveschool-api.herokuapp.com/api/posts/${id}`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
           },

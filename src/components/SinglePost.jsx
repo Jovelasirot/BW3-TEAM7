@@ -18,11 +18,13 @@ const SinglePost = () => {
     }
   }, [token]);
   return (
-    // <Container className="bg-white rounded-1  border">
-    <Row className="flex-column bg-white rounded-1  border">
+    <div>
       {post.map((post) => (
-        <div key={post._id}>
-          <Col className="d-flex justify-content-between mt-2">
+        <Container
+          key={post._id}
+          className="bg-white rounded-2  border mt-3 py-2"
+        >
+          <Col className="d-flex justify-content-between">
             <div className="d-flex align-items-center">
               <div>
                 {post.image !== undefined ? (
@@ -42,21 +44,23 @@ const SinglePost = () => {
               <div className="ms-2">
                 <p className="mb-0">{post.user.username}</p>
 
-                <p className="mb-0">{post.createdAt}</p>
+                <p className="mb-0 text-muted">
+                  {post.createdAt.split("T")[0]}
+                </p>
+                <p className="mb-0">{post.text}</p>
               </div>
             </div>
             <div>
-              <i className="bi bi-three-dots"></i>
+              <i
+                className="bi bi-three-dots"
+                // onClick={handleDelete(post._id)}
+              ></i>
               <i className="bi bi-x-lg"></i>
             </div>
           </Col>
-          <Col className="border-bottom border-1 border-50 pb-2">
-            {post.text}
-          </Col>
-        </div>
+        </Container>
       ))}
-    </Row>
-    // </Container>
+    </div>
   );
 };
 
