@@ -1,4 +1,11 @@
-import { Col, Container, InputGroup, Modal, Row } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  InputGroup,
+  Modal,
+  Row,
+} from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addHomePagePost, saveHomePost } from "../redux/actions/actions";
@@ -7,9 +14,10 @@ import { useEffect, useState } from "react";
 const HomeMidTop = () => {
   const [postContent, setPostContent] = useState({ text: "" });
   const [selectedFile, setSelectedFile] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showModalPost, setShowModalPost] = useState(false);
   const dispatch = useDispatch();
 
+  const userData = useSelector((state) => state.user.content);
   const profileImage = useSelector((state) => state.user.content.image);
 
   const token = useSelector((state) => state.token.token);
@@ -28,6 +36,7 @@ const HomeMidTop = () => {
     dispatch(saveHomePost(token));
     console.log(postContent);
     setPostContent({ text: "" });
+    setShowModalPost(false);
   };
 
   return (
@@ -47,7 +56,7 @@ const HomeMidTop = () => {
         <Form className="ms-2 flex-grow-1 " onSubmit={(e) => handleSubmit(e)}>
           <Form.Control
             placeholder="Avvia Un Post"
-            onChange={(e) => setPostContent({ text: e.target.value })}
+            onClick={() => setShowModalPost(true)}
           ></Form.Control>
         </Form>
       </Col>
@@ -55,18 +64,15 @@ const HomeMidTop = () => {
       <Col>
         <Container>
           <div className="d-flex fs-6 justify-content-between  ">
-            <div
-              className="d-flex addImg rounded-1 p-1 "
-              onClick={() => setShowModal(true)}
-            >
+            <div className="d-flex addImg rounded-1 p-1 ">
               <i className="bi bi-image text-secondary "></i>
               <span className="ms-2">Contenuti multimediali</span>
             </div>
-            <div className="d-flex p-1 ">
+            <div className="d-flex addImg rounded-1 p-1 ">
               <i className="bi bi-calendar3 text-warning"></i>
               <span className="ms-2">Evento</span>
             </div>
-            <div className="d-flex p-1 ">
+            <div className="d-flex addImg rounded-1 p-1 ">
               <i className="bi bi-layout-text-window text-danger"></i>
               <span className="ms-2">Scrivi un articolo</span>
             </div>
@@ -74,17 +80,84 @@ const HomeMidTop = () => {
         </Container>
       </Col>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal
+        show={showModalPost}
+        onHide={() => setShowModalPost(false)}
+        className="modal-lg"
+      >
         <Modal.Header closeButton>
-          <Modal.Title>Upload File</Modal.Title>
+          <Modal.Title className="d-flex align-items-center">
+            <div>
+              <img
+                src={profileImage}
+                alt=""
+                style={{ height: "50px" }}
+                className="rounded-circle me-3 "
+              />
+            </div>
+            <div>
+              <p className="mb-0">
+                {userData.name} {userData.surname}
+              </p>
+              <p className="fw-light mb-0" style={{ fontSize: "13px" }}>
+                Pubblica: Chiunque
+              </p>
+            </div>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
-            <input type="file" onChange={handleFileChange} />
-          </form>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+            <Form.Control
+              as="textarea"
+              rows={9}
+              className="txtArea"
+              placeholder="Di cosa vorresti parlare?"
+              value={postContent.text}
+              onChange={(e) =>
+                setPostContent({ ...postContent, text: e.target.value })
+              }
+            />
+          </Form.Group>
+          <Container>
+            <div className="d-flex">
+              <div>
+                <label htmlFor="upload-photo" className="addImgModal ">
+                  <i className="bi bi-image  fs-5 text-muted "></i>
+                </label>
+                <input
+                  type="file"
+                  onChange={handleFileChange}
+                  id="upload-photo"
+                  className="d-none"
+                />
+              </div>
+              <div className="ms-4">
+                <span className="addImgModal">
+                  <i className="bi bi-calendar3 fs-5  text-muted "></i>
+                </span>
+              </div>
+              <div className="ms-4">
+                <span className="addImgModal">
+                  <i className="bi bi-patch-minus fs-5  text-muted"></i>
+                </span>
+              </div>
+              <div className="ms-4">
+                <span className="addImgModal">
+                  <i className="bi bi-three-dots fs-5  text-muted"></i>
+                </span>
+              </div>
+            </div>
+          </Container>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={() => setShowModal(false)}>Continua</button>
+          <Button
+            onClick={(e) => handleSubmit(e)}
+            variant={postContent.text.trim() === "" ? "disabled" : "secondary"}
+            className="rounded-5"
+            disabled={postContent.text.trim() === ""}
+          >
+            Pubblica
+          </Button>
         </Modal.Footer>
       </Modal>
     </Row>

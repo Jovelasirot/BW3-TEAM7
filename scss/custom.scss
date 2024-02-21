@@ -92,4 +92,27 @@ $secondary: #0A66C2;
       background-color: #e4e4e4; }
   }
 
+  .txtArea{
+    resize: none;
+    border-style: none; 
+    border-color: Transparent; 
+    overflow: auto;        
+  }
+
+  .addImgModal{
+    background-color: #e6e5e5;
+  padding: 30px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #e6e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  &:hover {
+    background-color: #ecebeb;
+    border: 1px solid #dadada;
+    box-shadow: 1px 8px 15px -4px #b3b1b1;; }
+  }
+
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
