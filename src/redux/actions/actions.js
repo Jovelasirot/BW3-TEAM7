@@ -10,6 +10,7 @@ export const ADD_USER_POST = "ADD_USER_POST";
 export const RESET_POST_DATA = "RESET_POST_DATA";
 export const DELETE_USER_POST = "DELETE_USER_POST";
 export const SAVE_HOME_POST = "SAVE_HOME_POST";
+export const ADD_HOMEPAGE_POST = "ADD_HOMEPAGE_POST";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -142,9 +143,67 @@ export const saveHomePost = (token) => {
       );
       if (response.ok) {
         const data = await response.json();
-        const array = data.filter((post, id) => id < 50);
+        const array = data.filter((post, id) => id > 750);
+        array.reverse();
         console.log("array", array);
         dispatch({ type: SAVE_HOME_POST, payload: array });
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+const editImage = (id, token, image) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${id}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: image,
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log("data", data);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const addHomePagePost = (token, text, image) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(text),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        dispatch(editImage(data._id, token, image));
+        console.log("data", data);
       } else {
         alert("Error");
       }

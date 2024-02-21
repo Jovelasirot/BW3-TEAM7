@@ -1,38 +1,44 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import profileBgTop from "../assets/profileBgTop.png";
-import Filippo from "../assets/Filippo.jpg";
+
+import ProfileMan from "../assets/ProfileMan.png";
+import { useSelector } from "react-redux";
 
 function SidebarSx() {
   const numeroRandom = Math.floor(Math.random() * 99) + 1;
   const numeroRandom1 = Math.floor(Math.random() * 99) + 1;
+  const nomeUtente = useSelector((state) => state.user.content.name);
+  const cognomeUtente = useSelector((state) => state.user.content.surname);
+  const profileImage = useSelector((state) => state.user.content.image);
+  const title = useSelector((state) => state.user.content.title);
 
-
-    return (
-        <Col className="col-lg-2 col-md-2 d-s-none">
-        <Row>
-          <Col>
-            <section className="p-2 m-2 border border">
-              <div>
-                <img
+  return (
+    <Col className="col-lg-2 col-md-2 d-s-none">
+      <Row>
+        <Col>
+          <section className="p-2 m-2 border border">
+            <div className="position-relative">
+              <img
                 src={profileBgTop}
                 alt=""
-                className="img-fluid w-100 z-0 h-100 position-relative"
+                className="img-fluid w-100 z-0 position-relative"
+                style={{ height: "80px" }}
               />
-            </div>
 
-            <div className="z-1 text-center top-25 start-25 d-flex position-absolute text-center">
               <img
-                src={Filippo}
+                src={profileImage !== undefined ? profileImage : ProfileMan}
                 alt=""
-                className="profilePic flex-grow-1 rounded-circle border border-solid border-light"
+                className="profilePic position-absolute top-100 start-50 translate-middle rounded-circle border border-solid border-black-50"
                 style={{ width: "60px", height: "60px" }}
               />
             </div>
 
             <div className="d-flex-column text-center">
-              <p className="sidebarText fw-bold mt-4 pb-1">Nome e Cognome</p>
-              <p className="sidebarText1 ">Titolo</p>
+              <p className="sidebarText fw-bold mt-5 pb-1">
+                {nomeUtente} {cognomeUtente}
+              </p>
+              <p className="sidebarText1 ">{title}</p>
             </div>
 
             <hr />
