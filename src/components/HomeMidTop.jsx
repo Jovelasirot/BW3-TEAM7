@@ -33,10 +33,10 @@ const HomeMidTop = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addHomePagePost(token, postContent, formData));
-    dispatch(saveHomePost(token));
     console.log(postContent);
     setPostContent({ text: "" });
     setShowModalPost(false);
+    dispatch(saveHomePost(token));
   };
 
   return (

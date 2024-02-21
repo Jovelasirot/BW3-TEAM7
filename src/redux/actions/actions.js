@@ -145,7 +145,7 @@ export const saveHomePost = (token) => {
       );
       if (response.ok) {
         const data = await response.json();
-        const array = data.filter((post, id) => id > 700);
+        const array = data.slice(-10);
         array.reverse();
         console.log("array", array);
         dispatch({ type: SAVE_HOME_POST, payload: array });
