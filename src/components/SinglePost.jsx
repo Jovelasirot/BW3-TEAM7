@@ -36,6 +36,7 @@ const SinglePost = () => {
     <div>
       {post.map((post) => (
         <Container
+          fluid
           key={post._id}
           className="bg-white rounded-2  border mt-3 py-2"
         >

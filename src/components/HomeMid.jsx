@@ -21,7 +21,7 @@ const HomeMid = () => {
             </span>
           </div>
         </Col>
-        <Col>
+        <Col className="px-0">
           <SinglePost />
         </Col>
       </Row>

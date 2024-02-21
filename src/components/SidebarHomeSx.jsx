@@ -14,9 +14,9 @@ function SidebarSx() {
   const title = useSelector((state) => state.user.content.title);
 
   return (
-    <Col className="col-lg-2 col-md-2 d-s-none">
+    <Col className="col-lg-2 col-md-2 d-s-none mt-2">
       <Row>
-        <Col>
+        <Col className="px-0">
           <section className="p-2 m-2 border border">
             <div className="position-relative">
               <img
