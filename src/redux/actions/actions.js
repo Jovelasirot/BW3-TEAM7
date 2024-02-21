@@ -157,8 +157,35 @@ export const saveHomePost = (token) => {
     }
   };
 };
+const editImage = (id, token, image) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: image,
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log("data", data);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
 
-export const addHomePagePost = (token, text) => {
+export const addHomePagePost = (token, text, image) => {
   return async (dispatch) => {
     try {
       dispatch({ type: TURN_ON_SPINNER });
@@ -175,6 +202,7 @@ export const addHomePagePost = (token, text) => {
       );
       if (response.ok) {
         const data = await response.json();
+        dispatch(editImage(data._id, token, image));
         console.log("data", data);
       } else {
         alert("Error");
