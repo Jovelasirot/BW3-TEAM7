@@ -89,7 +89,9 @@ function NavbarComponent() {
                   </Col>
                   <Col className="d-flex flex-column text-center g-0">
                     <span href="#">
-                      <i className="bi bi-suitcase-lg icons py-0"></i>
+                      <Link to="/job" className="text-decoration-none">
+                        <i className="bi bi-suitcase-lg icons py-0"></i>
+                      </Link>
                     </span>
                     <span className="navbar-text py-0">Lavoro</span>
                   </Col>
