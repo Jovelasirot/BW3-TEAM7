@@ -74,10 +74,13 @@ function NavbarComponent() {
                 <Row className="align-items-center">
                   <Col className="d-flex flex-column text-center g-0">
                     <span href="#">
-                      <i className="bi bi-house-door-fill icons py-0"></i>
+                      <Link to="/" className="text-decoration-none">
+                        <i className="bi bi-house-door-fill icons py-0"></i>
+                      </Link>
                     </span>
                     <span className="navbar-text py-0">Home</span>
                   </Col>
+
                   <Col className="d-flex flex-column text-center g-0">
                     <span href="#">
                       <i className="bi bi-people-fill icons"></i>
