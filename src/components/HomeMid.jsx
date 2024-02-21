@@ -1,5 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import HomeMidTop from "./HomeMidTop";
+import SinglePost from "./SinglePost";
 
 const HomeMid = () => {
   return (
@@ -21,7 +22,7 @@ const HomeMid = () => {
           </div>
         </Col>
         <Col>
-          <h1>test</h1>
+          <SinglePost />
         </Col>
       </Row>
     </Container>
