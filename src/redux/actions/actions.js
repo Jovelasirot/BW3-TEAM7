@@ -145,7 +145,7 @@ export const saveHomePost = (token) => {
       );
       if (response.ok) {
         const data = await response.json();
-        const array = data.filter((post, id) => id > 750);
+        const array = data.filter((post, id) => id > 700);
         array.reverse();
         console.log("array", array);
         dispatch({ type: SAVE_HOME_POST, payload: array });
@@ -175,7 +175,7 @@ const editImage = (id, token, image) => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log("data", data);
+        console.log("image", data);
       } else {
         alert("Error");
       }
@@ -207,7 +207,7 @@ export const addHomePagePost = (token, text, image) => {
         dispatch(editImage(data._id, token, image));
         console.log("data", data);
       } else {
-        alert("Error");
+        console.log("Error");
       }
     } catch (error) {
       console.log(error);

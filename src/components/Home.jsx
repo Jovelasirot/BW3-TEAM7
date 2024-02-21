@@ -5,7 +5,7 @@ import HomeMid from "./HomeMid";
 
 const Home = () => {
   return (
-    <Container fluid>
+    <Container>
       <Row>
         <SidebarHomeSx />
         {/* sidebar sx col 2
