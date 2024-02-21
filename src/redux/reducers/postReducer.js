@@ -3,6 +3,7 @@ import {
   TURN_OFF_SPINNER,
   TURN_ON_SPINNER,
   ADD_USER_POST,
+  RESET_POST_DATA,
 } from "../actions/actions";
 
 const initialState = {
@@ -26,6 +27,10 @@ const addUserPost = (state = initialState, action) => {
         ...state,
         content: action.payload,
         loading: false,
+      };
+    case RESET_POST_DATA:
+      return {
+        ...initialState,
       };
     case ADD_USER_POST:
       return {

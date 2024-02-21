@@ -1,6 +1,7 @@
 import Sidebar from "./sidebar";
 import ProfileTop from "./ProfileTop";
 import { Container, Row } from "react-bootstrap";
+import MyFooter from "./MyFooter";
 
 const CombineProfilePage = () => {
   return (
@@ -10,6 +11,7 @@ const CombineProfilePage = () => {
           <ProfileTop />
           <Sidebar />
         </Row>
+        <MyFooter />
       </Container>
     </>
   );

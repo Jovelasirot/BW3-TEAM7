@@ -9,6 +9,7 @@ import {
   Row,
   Col,
   Image,
+  Container,
 } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -20,7 +21,6 @@ import MyForm from "./MyForm";
 import pictureExperience from "../assets/esperienzepx.avif";
 
 const MyEsperienza = () => {
-  const [posts, setPosts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const reduxPosts = useSelector((state) => state.post.content);
   const token = useSelector((state) => state.token.token) || undefined;
@@ -31,13 +31,15 @@ const MyEsperienza = () => {
     if (token !== undefined && id !== undefined) {
       console.log("id", id);
       dispatch(addUserPost(id, token));
-
-      setPosts(reduxPosts);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, id, dispatch]);
-  console.log(posts);
+  }, [token, id]);
+
+  if (reduxPosts.length !== 0) {
+    console.log("Oggetto contenuti della fetch", reduxPosts);
+  }
+
   return (
     <Card className="mb-2 p-0">
       <CardBody className="p-0 pt-3">
@@ -52,11 +54,6 @@ const MyEsperienza = () => {
             <Modal.Body>
               <MyForm />
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={() => setShowForm(false)}>
-                Chiudi
-              </Button>
-            </Modal.Footer>
           </Modal>
           <div className="d-flex align-items-center ">
             <div
@@ -71,34 +68,40 @@ const MyEsperienza = () => {
             </div>
           </div>
         </div>
-        <Row>
-          {posts.length > 0 ? (
-            posts.map((post) => (
-              <Col key={post._id} className="col-12 mt-4 d-flex ms-2">
-                <Image
-                  style={{ width: "150px", height: "150px" }}
-                  src={pictureExperience}
-                  className="rounded-circle  "
-                />
-                <div className=" ms-3">
-                  <h5>{post.role}</h5>
-                  <p>{post.description}</p>
-                  <p>Incominciato il: {post.startDate.split("T")[0]}</p>
-                  <p>
-                    Terminato il:{" "}
-                    {post.endDate !== null
-                      ? post.endDate.split("T")[0]
-                      : "Fino ad Oggi..."}
-                  </p>
-                </div>
-              </Col>
-            ))
-          ) : (
-            <Col className="ms-4 fs-6 mb-4 ">
-              Le tue esperieneze verrano mostrate qua
-            </Col>
-          )}
-        </Row>
+        <Container>
+          <Container>
+            <Row>
+              {reduxPosts.length > 0 ? (
+                reduxPosts.map((post) => (
+                  <Col
+                    key={post._id}
+                    className="col-12 mt-4 d-flex  align-items-center border-bottom pb-2"
+                  >
+                    <Image
+                      style={{ width: "130px", height: "130px" }}
+                      src={pictureExperience}
+                      className="rounded-circle  "
+                    />
+                    <div className=" ps-3">
+                      <h5>{post.role}</h5>
+                      <p className="mb-0 text-muted">{post.description}</p>
+                      <p className="mb-0">
+                        {post.startDate.split("T")[0]} -{" "}
+                        {post.endDate !== null
+                          ? post.endDate.split("T")[0]
+                          : "Presente"}
+                      </p>
+                    </div>
+                  </Col>
+                ))
+              ) : (
+                <Col className="ms-1 fs-6 mb-4 ">
+                  Le tue esperieneze verrano mostrate qua
+                </Col>
+              )}
+            </Row>
+          </Container>
+        </Container>
       </CardBody>
     </Card>
   );
