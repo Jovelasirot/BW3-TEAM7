@@ -18,48 +18,45 @@ const SinglePost = () => {
     }
   }, [token]);
   return (
-    <Container className="bg-white rounded-1  border">
-      <Row className="flex-column">
-        {post.map((post) => (
-          <div key={post._id}>
-            <Col className="d-flex justify-content-between">
-              <div className="d-flex align-items-center">
-                <div>
-                  <i className="bi bi-person fs-1 me-2"></i>
-                </div>
-                <div>
-                  <p className="mb-0">{post.user.username}</p>
-
-                  <p className="mb-0">{post.createdAt}</p>
-                </div>
-              </div>
+    // <Container className="bg-white rounded-1  border">
+    <Row className="flex-column bg-white rounded-1  border">
+      {post.map((post) => (
+        <div key={post._id}>
+          <Col className="d-flex justify-content-between mt-2">
+            <div className="d-flex align-items-center">
               <div>
-                <i className="bi bi-three-dots"></i>
-                <i className="bi bi-x-lg"></i>
+                {post.image !== undefined ? (
+                  <img
+                    src={post.image}
+                    alt="img"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "50%",
+                    }}
+                  />
+                ) : (
+                  <i className="bi bi-person fs-1 me-2"></i>
+                )}
               </div>
-            </Col>
-            <Col>{post.text}</Col>
-          </div>
-        ))}
-        <Col className="d-flex justify-content-between">
-          <div className="d-flex align-items-center">
-            <div>
-              <i className="bi bi-person fs-1 me-2"></i>
+              <div className="ms-2">
+                <p className="mb-0">{post.user.username}</p>
+
+                <p className="mb-0">{post.createdAt}</p>
+              </div>
             </div>
             <div>
-              <p className="mb-0"></p>
-              <p className="mb-0">Role placeholder</p>
-              <p className="mb-0">Date placeholder</p>
+              <i className="bi bi-three-dots"></i>
+              <i className="bi bi-x-lg"></i>
             </div>
-          </div>
-          <div>
-            <i className="bi bi-three-dots"></i>
-            <i className="bi bi-x-lg"></i>
-          </div>
-        </Col>
-        <Col>user text</Col>
-      </Row>
-    </Container>
+          </Col>
+          <Col className="border-bottom border-1 border-50 pb-2">
+            {post.text}
+          </Col>
+        </div>
+      ))}
+    </Row>
+    // </Container>
   );
 };
 
