@@ -11,6 +11,8 @@ export const RESET_POST_DATA = "RESET_POST_DATA";
 export const DELETE_USER_POST = "DELETE_USER_POST";
 export const SAVE_HOME_POST = "SAVE_HOME_POST";
 export const ADD_HOMEPAGE_POST = "ADD_HOMEPAGE_POST";
+export const SAVE_ALL_JOBS = "SAVE_ALL_JOBS";
+export const SAVE_CATEGORY_JOBS = "SAVE_CATEGORY_JOBS";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -204,6 +206,58 @@ export const addHomePagePost = (token, text, image) => {
         const data = await response.json();
         dispatch(editImage(data._id, token, image));
         console.log("data", data);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const saveAllJobs = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://strive-benchmark.herokuapp.com/api/jobs`,
+        {
+          method: "GET",
+        }
+      );
+      if (response.ok) {
+        const { data } = await response.json();
+        const array = data.filter((post, id) => id < 50);
+        console.log("data", array);
+        dispatch({ type: SAVE_ALL_JOBS, payload: array });
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const saveCategoryJobs = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://strive-benchmark.herokuapp.com/api/jobs?category=dev&limit=10`,
+        {
+          method: "GET",
+        }
+      );
+      if (response.ok) {
+        const { data } = await response.json();
+        const array = data.filter((post, id) => id < 50);
+        console.log("data", array);
+        dispatch({ type: SAVE_CATEGORY_JOBS, payload: data });
       } else {
         alert("Error");
       }

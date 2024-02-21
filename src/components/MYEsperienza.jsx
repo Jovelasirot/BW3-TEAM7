@@ -23,6 +23,8 @@ import {
 import { addUserPost } from "../redux/actions/actions";
 import MyForm from "./MyForm";
 import pictureExperience from "../assets/esperienzepx.avif";
+import { saveAllJobs } from "../redux/actions/actions";
+import { saveCategoryJobs } from "../redux/actions/actions";
 
 const MyEsperienza = () => {
   const [showForm, setShowForm] = useState(false);
@@ -31,7 +33,8 @@ const MyEsperienza = () => {
   const token = useSelector((state) => state.token.token) || undefined;
   const id = useSelector((state) => state.user.content._id) || undefined;
   const dispatch = useDispatch();
-
+  dispatch(saveAllJobs());
+  dispatch(saveCategoryJobs());
   useEffect(() => {
     if (token !== undefined && id !== undefined) {
       console.log("id", id);
