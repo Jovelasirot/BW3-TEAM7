@@ -6,7 +6,7 @@ import NavbarComponent from "./components/NavbarComponent";
 import Home from "./components/Home";
 import HomeMid from "./components/HomeMid";
 import NotFound from "./components/NotFound";
-
+import Messaggistica from "./components/Messaggistica";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Messaggistica/>
+        <Messaggistica />
       </div>
     </BrowserRouter>
   );
