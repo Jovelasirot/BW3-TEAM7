@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { newUserPost } from "../redux/actions/actions";
+import { Modal } from "react-bootstrap";
 
 const MyForm = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ const MyForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="role">
-        <Form.Label>Role</Form.Label>
+        <Form.Label className="my-2">Ruolo</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter role"
@@ -42,7 +43,7 @@ const MyForm = () => {
       </Form.Group>
 
       <Form.Group controlId="company">
-        <Form.Label>Company</Form.Label>
+        <Form.Label className="my-2">Compagnia</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter company"
@@ -51,7 +52,7 @@ const MyForm = () => {
       </Form.Group>
 
       <Form.Group controlId="startDate">
-        <Form.Label>Start Date</Form.Label>
+        <Form.Label className="my-2">Data d&apos;inizio</Form.Label>
         <Form.Control
           type="date"
           placeholder="Enter start date"
@@ -60,7 +61,9 @@ const MyForm = () => {
       </Form.Group>
 
       <Form.Group controlId="endDate">
-        <Form.Label>End Date</Form.Label>
+        <Form.Label className="my-2">
+          Data di fine &#40;opzionale&#41;
+        </Form.Label>
         <Form.Control
           type="date"
           placeholder="Enter end date"
@@ -69,7 +72,7 @@ const MyForm = () => {
       </Form.Group>
 
       <Form.Group controlId="description">
-        <Form.Label>Description</Form.Label>
+        <Form.Label className="my-2">Description</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter description"
@@ -78,17 +81,18 @@ const MyForm = () => {
       </Form.Group>
 
       <Form.Group controlId="area">
-        <Form.Label>Area</Form.Label>
+        <Form.Label className="my-2">Area</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter area"
           onChange={handleChange}
         />
       </Form.Group>
-
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <div className="d-flex justify-content-end border-top mt-2 ">
+        <Button variant="secondary" type="submit" className="text-end mt-2">
+          Crea
+        </Button>
+      </div>
     </Form>
   );
 };

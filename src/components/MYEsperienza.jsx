@@ -21,7 +21,6 @@ import MyForm from "./MyForm";
 import pictureExperience from "../assets/esperienzepx.avif";
 
 const MyEsperienza = () => {
-  const [posts, setPosts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const reduxPosts = useSelector((state) => state.post.content);
   const token = useSelector((state) => state.token.token) || undefined;
@@ -38,7 +37,7 @@ const MyEsperienza = () => {
   }, [token, id]);
 
   if (reduxPosts.length !== 0) {
-    console.log("Oggetto contenuti della fetch", posts);
+    console.log("Oggetto contenuti della fetch", reduxPosts);
   }
 
   return (
@@ -55,11 +54,6 @@ const MyEsperienza = () => {
             <Modal.Body>
               <MyForm />
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={() => setShowForm(false)}>
-                Chiudi
-              </Button>
-            </Modal.Footer>
           </Modal>
           <div className="d-flex align-items-center ">
             <div
@@ -95,7 +89,7 @@ const MyEsperienza = () => {
                         {post.startDate.split("T")[0]} -{" "}
                         {post.endDate !== null
                           ? post.endDate.split("T")[0]
-                          : "Fino ad Oggi..."}
+                          : "Presente"}
                       </p>
                     </div>
                   </Col>
