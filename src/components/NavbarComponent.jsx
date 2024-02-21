@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import LogoNav from "../assets/LogoNav.png";
 
 function NavbarComponent() {
+
   return (
     <Container fluid className="bg-white sticky-lg-top ">
       <Container>
@@ -97,17 +98,8 @@ function NavbarComponent() {
                   </Dropdown>
                 </Col>
                 <Col className="d-flex flex-column text-center g-0 ms-1 ">
-                  <span href="#">
-                    <i className="bi bi-grid-3x3-gap-fill icons"></i>
-                  </span>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      className="bg-white border border-0 p-0"
-                      style={{ fontSize: "12px" }}
-                    >
-                      Per le aziende
-                    </Dropdown.Toggle>
-                  </Dropdown>
+                <div>
+                </div>
                 </Col>
                 <Col className=" navbar-text2 mt-1  ">
                   <div>Prova Premium per</div>
