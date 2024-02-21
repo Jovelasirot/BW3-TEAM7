@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
-import HomeMid from "./components/HomeMid";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeMid />} />
           <Route path="/profile/:username" element={<CombineProfilePage />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
     </BrowserRouter>

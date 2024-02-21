@@ -169,7 +169,7 @@ function NavbarComponent() {
                         </Modal.Title>
                       </Modal.Header>
                       <Modal.Body className="modalsize bodysize">
-                        <div className="border rounded-4 bg bg-dark">
+                        <div className="border rounded-4 bg bg-white">
                           <div className="mt-2">
                             <h6 className="ms-4 py-2">
                               Scopri altri prodotti LinkedIn
@@ -302,7 +302,7 @@ function NavbarComponent() {
                             </div>
                           </div>
                         </div>
-                        <div className="border rounded-4 bg bg-dark">
+                        <div className="border rounded-4 bg bg-white">
                           <div className="mt-2 text-white">
                             <h6 className="ms-4 py-2">
                               Scopri altro per il business
@@ -310,35 +310,35 @@ function NavbarComponent() {
                             <hr />
                           </div>
                           <div>
-                            <div className="ms-3 lineh text-white">
+                            <div className="ms-3 lineh text-black">
                               <h6>Assumi su LinkedIn</h6>
                               <p className="modalp2">Trova, attrai e assumi</p>
                             </div>
-                            <div className="ms-3 lineh text-white">
+                            <div className="ms-3 lineh text-black">
                               <h6>Vendi con LinkedIn</h6>
                               <p className="modalp2">
                                 Sblocca nuove opportunità di vendita
                               </p>
                             </div>
-                            <div className="ms-3 lineh text-white">
+                            <div className="ms-3 lineh text-black">
                               <h6>Offerta di lavoro gratuita</h6>
                               <p className="modalp2">
                                 Ottieni rapidamente candidati qualificati
                               </p>
                             </div>
-                            <div className="ms-3 lineh text-white">
+                            <div className="ms-3 lineh text-black">
                               <h6>Fai pubblicità su LinkedIn</h6>
                               <p className="modalp2">
                                 Acquisisci clienti e fai crescere la tua azienda
                               </p>
                             </div>
-                            <div className="ms-3 lineh text-white">
+                            <div className="ms-3 lineh text-black">
                               <h6>Impara con LinkedIn</h6>
                               <p className="modalp2">
                                 Corsi per formare i tuoi dipendenti
                               </p>
                             </div>
-                            <div className="ms-3 lineh text-white">
+                            <div className="ms-3 lineh text-black">
                               <h6>Centro amministrazione</h6>
                               <p className="modalp2">
                                 Gestisci i dettagli di fatturazione e account
