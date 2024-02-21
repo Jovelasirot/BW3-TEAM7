@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ListGroup, Button } from "react-bootstrap";
+import HomeDxFooter from "./HomeDxFooter";
 
 const SidebarHomeDx = () => {
   const items = [
@@ -18,42 +19,45 @@ const SidebarHomeDx = () => {
   const [espandiLista, setEspandiLista] = useState(false);
 
   return (
-    <section>
-      <div className="col-lg-3 d-none d-md-block ">
-        <div className="d-flex justify-content-between">
-          <h5 className="m-3">LinkedIn Notizie</h5>
-          <i className="bi bi-info-square-fill m-3"></i>
-        </div>
-        <ListGroup as="ul">
-          {items.slice(0, 5).map((item, index) => (
-            <ListGroup.Item key={index} as="li">
-              <h6>{item.title}</h6>
-              <p>{item.content}</p>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-
-        {espandiLista && (
+    <>
+      <section>
+        <div className="col-lg-3 d-none d-md-block ">
+          <div className="d-flex justify-content-between">
+            <h5 className="m-3">LinkedIn Notizie</h5>
+            <i className="bi bi-info-square-fill m-3"></i>
+          </div>
           <ListGroup as="ul">
-            {items.slice(5).map((item, index) => (
+            {items.slice(0, 5).map((item, index) => (
               <ListGroup.Item key={index} as="li">
                 <h6>{item.title}</h6>
                 <p>{item.content}</p>
               </ListGroup.Item>
             ))}
           </ListGroup>
-        )}
 
-        {items.length > 5 && (
-          <Button
-            onClick={() => setEspandiLista(!espandiLista)}
-            className="mt-3"
-          >
-            {espandiLista ? "Meno dettagli" : "Vedi altro"}
-          </Button>
-        )}
-      </div>
-    </section>
+          {espandiLista && (
+            <ListGroup as="ul">
+              {items.slice(5).map((item, index) => (
+                <ListGroup.Item key={index} as="li">
+                  <h6>{item.title}</h6>
+                  <p>{item.content}</p>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          )}
+
+          {items.length > 5 && (
+            <Button
+              onClick={() => setEspandiLista(!espandiLista)}
+              className="mt-3"
+            >
+              {espandiLista ? "Meno dettagli" : "Vedi altro"}
+            </Button>
+          )}
+        </div>
+      </section>
+      <HomeDxFooter />
+    </>
   );
 };
 
