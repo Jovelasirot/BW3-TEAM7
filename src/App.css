@@ -74,3 +74,20 @@ section {
 #HomeDxFooter {
   color: grey;
 }
+
+
+.jobsIcons {
+  color: rgb(70, 70, 70);
+  font-size: 16px !important
+
+}
+
+.jobText {
+  font-size: 14px;
+  color: rgb(70, 70, 70);
+}
+
+.buttonIcon{
+  font-size: 16px !important
+
+}
