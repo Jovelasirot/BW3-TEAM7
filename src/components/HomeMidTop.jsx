@@ -9,7 +9,7 @@ const HomeMidTop = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
   const formData = new FormData();
-  formData.append("image", selectedFile);
+  formData.append("post", selectedFile);
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
     console.log(event.target.files[0]);
