@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
-import Home from "./components/home";
+import Home from "./components/Home";
 
 function App() {
   return (
