@@ -5,6 +5,7 @@ import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
 import Home from "./components/Home";
 import HomeMid from "./components/HomeMid";
+import Messaggistica from "./components/Messaggistica";
 
 function App() {
   return (
