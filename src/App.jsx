@@ -6,6 +6,7 @@ import NavbarComponent from "./components/NavbarComponent";
 import Home from "./components/Home";
 import HomeMid from "./components/HomeMid";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -16,7 +17,7 @@ function App() {
           <Route path="/profile/:username" element={<CombineProfilePage />} />
           <Route path="/" element={<Home />} />
         </Routes>
-        <Messaggistica />
+        <Messaggistica/>
       </div>
     </BrowserRouter>
   );
