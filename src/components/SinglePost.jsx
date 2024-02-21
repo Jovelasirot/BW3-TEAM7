@@ -2,7 +2,11 @@ import { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { deletePost, saveHomePost } from "../redux/actions/actions";
+import {
+  deletePost,
+  fetchAllUser,
+  saveHomePost,
+} from "../redux/actions/actions";
 
 const SinglePost = () => {
   const post = useSelector((state) => state.homePage.content);
@@ -32,8 +36,22 @@ const SinglePost = () => {
     }
   };
 
+  const allUser = () => {
+    dispatch(fetchAllUser(token));
+  };
+
+  const allUserState = useSelector((state) => state.allUser.content);
+  console.log(allUserState);
+
   return (
     <div>
+      <Button
+        onClick={() => {
+          allUser();
+        }}
+      >
+        see all user
+      </Button>
       {post.map((post) => (
         <Container
           fluid
