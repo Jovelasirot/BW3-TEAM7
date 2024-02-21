@@ -14,7 +14,11 @@ import {
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { newUserPost } from "../redux/actions/actions";
+import {
+  deleteUserPost,
+  newUserPost,
+  saveHomePost,
+} from "../redux/actions/actions";
 
 import { addUserPost } from "../redux/actions/actions";
 import MyForm from "./MyForm";
@@ -31,6 +35,7 @@ const MyEsperienza = () => {
     if (token !== undefined && id !== undefined) {
       console.log("id", id);
       dispatch(addUserPost(id, token));
+      dispatch(saveHomePost(token));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,6 +96,16 @@ const MyEsperienza = () => {
                           ? post.endDate.split("T")[0]
                           : "Presente"}
                       </p>
+                    </div>
+                    <div>
+                      <Button
+                        onClick={() => {
+                          dispatch(deleteUserPost(id, token, post._id));
+                          console.log("post eliminato", post._id);
+                        }}
+                      >
+                        elimina
+                      </Button>
                     </div>
                   </Col>
                 ))
