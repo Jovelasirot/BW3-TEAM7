@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { saveHomePost } from "../redux/actions/actions";
+import { deletePost, saveHomePost } from "../redux/actions/actions";
 
 const SinglePost = () => {
   const post = useSelector((state) => state.homePage.content);
@@ -12,11 +12,18 @@ const SinglePost = () => {
   console.log(token);
   const dispatch = useDispatch();
   console.log("post", post);
+
   useEffect(() => {
     if (token !== undefined) {
       dispatch(saveHomePost(token));
     }
-  }, [token]);
+  }, [token, dispatch]);
+
+  const handleDelete = (postID) => {
+    dispatch(deletePost(postID, token));
+    dispatch(saveHomePost(token));
+  };
+
   return (
     <div>
       {post.map((post) => (
@@ -51,10 +58,14 @@ const SinglePost = () => {
               </div>
             </div>
             <div>
-              <i
-                className="bi bi-three-dots"
-                // onClick={handleDelete(post._id)}
-              ></i>
+              <Button
+                onClick={() => {
+                  handleDelete(post._id);
+                }}
+              >
+                Delete
+              </Button>
+              <i className="bi bi-three-dots"></i>
               <i className="bi bi-x-lg"></i>
             </div>
           </Col>

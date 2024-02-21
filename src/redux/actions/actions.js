@@ -205,12 +205,36 @@ export const addHomePagePost = (token, text, image) => {
         dispatch(editImage(data._id, token, image));
         console.log("data", data);
       } else {
-        alert("Error");
+        console.log("Error");
       }
     } catch (error) {
       console.log(error);
     } finally {
       dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const deletePost = (postId, userToken) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+      } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };
