@@ -95,7 +95,7 @@ const MyEsperienza = () => {
                   </Col>
                 ))
               ) : (
-                <Col className="ms-4 fs-6 mb-4 ">
+                <Col className="ms-1 fs-6 mb-4 ">
                   Le tue esperieneze verrano mostrate qua
                 </Col>
               )}
