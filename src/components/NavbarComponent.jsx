@@ -16,7 +16,7 @@ function NavbarComponent() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > 300) {
         setShowSecondContainer(true);
       } else {
         setShowSecondContainer(false);
