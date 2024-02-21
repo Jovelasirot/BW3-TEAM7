@@ -1,5 +1,5 @@
 import "./App.css";
-
+import Messaggistica from "./components/Messaggistica";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
