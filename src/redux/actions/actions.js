@@ -8,6 +8,8 @@ export const RESET_USER_DATA = "RESET_USER_DATA";
 export const UPDATE_USER_POST = " UPDATE_USER_POST";
 export const ADD_USER_POST = "ADD_USER_POST";
 export const RESET_POST_DATA = "RESET_POST_DATA";
+export const DELETE_USER_POST = "DELETE_USER_POST";
+export const SAVE_HOME_POST = "SAVE_HOME_POST";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -87,6 +89,62 @@ export const newUserPost = (id, token, experience) => {
       if (response.ok) {
         const data = await response.json();
         dispatch({ type: ADD_USER_POST, payload: data });
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const deleteUserPost = (id, token, experience) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences/${experience}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        dispatch({ type: DELETE_USER_POST, payload: data });
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const saveHomePost = (token) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        const array = data.filter((post, id) => id < 50);
+        console.log("array", array);
+        dispatch({ type: SAVE_HOME_POST, payload: array });
       } else {
         alert("Error");
       }

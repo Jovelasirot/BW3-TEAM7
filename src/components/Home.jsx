@@ -3,7 +3,7 @@ import SidebarHomeDx from "./SidebarHomeDx";
 
 const Home = () => {
   return (
-    <Container>
+    <Container fluid>
       <Row>
         {/* sidebar sx col 2
         sez centrale col 7 */}
