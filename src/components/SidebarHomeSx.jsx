@@ -7,17 +7,6 @@ function SidebarSx() {
   const numeroRandom = Math.floor(Math.random() * 99) + 1;
   const numeroRandom1 = Math.floor(Math.random() * 99) + 1;
 
-<<<<<<< Updated upstream
-  return (
-    <Col className="col-lg-2 col-md-2 d-s-none">
-      <Row>
-        <Col>
-          <section className="p-2 m-2 border border">
-            <div>
-              <img
-=======
-    const numeroRandom = Math.floor(Math.random() * 99) + 1
-    const numeroRandom1 = Math.floor(Math.random() * 99) + 1
 
     return (
         <Col className="col-lg-2 col-md-2 d-s-none">
@@ -26,7 +15,6 @@ function SidebarSx() {
             <section className="p-2 m-2 border border">
               <div>
                 <img
->>>>>>> Stashed changes
                 src={profileBgTop}
                 alt=""
                 className="img-fluid w-100 z-0 h-100 position-relative"
