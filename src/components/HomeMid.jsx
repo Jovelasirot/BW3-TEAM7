@@ -4,7 +4,7 @@ import SinglePost from "./SinglePost";
 
 const HomeMid = () => {
   return (
-    <Container>
+    <div className="col-lg-7">
       <Row className="flex-column">
         <Col>
           <HomeMidTop />
@@ -25,7 +25,7 @@ const HomeMid = () => {
           <SinglePost />
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 
