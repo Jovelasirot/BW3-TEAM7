@@ -66,6 +66,9 @@
     display: none;
   }
 }
+.showMore {
+  cursor: pointer;
+}
 .showMore:hover {
   background-color: #e4e4e4;
 }

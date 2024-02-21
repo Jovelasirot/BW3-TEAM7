@@ -14,10 +14,10 @@ function SidebarSx() {
   const title = useSelector((state) => state.user.content.title);
 
   return (
-    <Col className="col-lg-2 col-md-2 d-s-none mt-2">
+    <Col className="col-lg-2 col-md-2 d-s-none mt-2 flex-grow-1 ">
       <Row>
         <Col className="px-0">
-          <section className="p-2 m-2 border border">
+          <section className="m-2 border border overflow-auto ">
             <div className="position-relative">
               <img
                 src={profileBgTop}
@@ -25,7 +25,6 @@ function SidebarSx() {
                 className="img-fluid w-100 z-0 position-relative"
                 style={{ height: "80px" }}
               />
-
               <img
                 src={profileImage !== undefined ? profileImage : ProfileMan}
                 alt=""
@@ -34,48 +33,54 @@ function SidebarSx() {
               />
             </div>
 
-            <div className="d-flex-column text-center">
-              <p className="sidebarText fw-bold mt-5 pb-1">
-                {nomeUtente} {cognomeUtente}
-              </p>
-              <p className="sidebarText1 ">{title}</p>
-            </div>
+            <div className="p-2">
+              <div className="d-flex-column text-center">
+                <p className="sidebarText fw-bold mt-5 pb-1">
+                  {nomeUtente} {cognomeUtente}
+                </p>
+                <p className="sidebarText1 ">{title}</p>
+              </div>
 
-            <hr />
-            <div className="">
-              <span className="sidebarText2 fw-bold">
-                Visitatori del profilo
-              </span>
-              <span className="float-end text-secondary sidebarText1 fw-bold">
-                {numeroRandom}
-              </span>
-            </div>
-            <div className="">
-              <span className="sidebarText2 fw-bold">Impressioni del post</span>
-              <span className="float-end text-secondary sidebarText1 fw-bold">
-                {numeroRandom1}
-              </span>
-            </div>
-            <hr />
-            <div>
-              <span className="sidebarText2">
-                Accedi a strumenti e informazioni in esclusiva
-              </span>
-              <p>
-                <span className="">
-                  <i className="bi bi-slash-square-fill sidebarIcons"></i>
+              <hr />
+              <div className="">
+                <span className="sidebarText2 fw-bold">
+                  Visitatori del profilo
                 </span>
-                <span className="ms-1 sidebarText1 fw-bold">
-                  Prova Premium per 0 EUR
+                <span className="float-end text-secondary sidebarText1 fw-bold">
+                  {numeroRandom}
                 </span>
-              </p>
-            </div>
-            <hr />
-            <div>
-              <span>
-                <i className="bi bi-bookmark-fill sidebarIcons1"></i>
-              </span>
-              <span className="sidebarText2 ms-2 fw-bold">I miei elementi</span>
+              </div>
+              <div className="">
+                <span className="sidebarText2 fw-bold">
+                  Impressioni del post
+                </span>
+                <span className="float-end text-secondary sidebarText1 fw-bold">
+                  {numeroRandom1}
+                </span>
+              </div>
+              <hr />
+              <div>
+                <span className="sidebarText2">
+                  Accedi a strumenti e informazioni in esclusiva
+                </span>
+                <p>
+                  <span className="">
+                    <i className="bi bi-slash-square-fill sidebarIcons"></i>
+                  </span>
+                  <span className="ms-1 sidebarText1 fw-bold">
+                    Prova Premium per 0 EUR
+                  </span>
+                </p>
+              </div>
+              <hr />
+              <div>
+                <span>
+                  <i className="bi bi-bookmark-fill sidebarIcons1"></i>
+                </span>
+                <span className="sidebarText2 ms-2 fw-bold">
+                  I miei elementi
+                </span>
+              </div>
             </div>
           </section>
           <section className="p-2 m-2 border border">
