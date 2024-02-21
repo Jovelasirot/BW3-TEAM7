@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
 import Home from "./components/Home";
+import HomeMid from "./components/HomeMid";
 
 function App() {
   return (
