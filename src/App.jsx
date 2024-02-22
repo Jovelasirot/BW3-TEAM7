@@ -1,5 +1,4 @@
 import "./App.css";
-import Messaggistica from "./components/Messaggistica";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CombineProfilePage from "./components/CombineProfilePage";
 import NavbarComponent from "./components/NavbarComponent";
@@ -11,7 +10,7 @@ import Job from "./components/Job";
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-light">
+      <div className="bg-light vh-100">
         <NavbarComponent />
         <Routes>
           <Route path="/profile/:username" element={<CombineProfilePage />} />

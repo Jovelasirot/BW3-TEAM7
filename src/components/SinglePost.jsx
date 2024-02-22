@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Placeholder, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
@@ -43,63 +43,89 @@ const SinglePost = () => {
   const allUserState = useSelector((state) => state.allUser.content);
   console.log(allUserState);
 
+  const loading = useSelector((state) => state.post.loading);
+
   return (
     <div>
-      <Button
+      {/* <Button
         onClick={() => {
           allUser();
         }}
       >
         see all user
-      </Button>
-      {post.map((post) => (
-        <Container
-          fluid
-          key={post._id}
-          className="bg-white rounded-2  border mt-3 py-2"
-        >
-          <Col className="d-flex justify-content-between">
-            <div className="d-flex align-items-center">
-              <div>
-                {post.image !== undefined ? (
-                  <img
-                    src={post.image}
-                    alt="img"
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                    }}
-                  />
-                ) : (
-                  <i className="bi bi-person fs-1 me-2"></i>
-                )}
-              </div>
-              <div className="ms-2">
-                <p className="mb-0">{post.user.username}</p>
+      </Button> */}
 
-                <p className="mb-0 text-muted">
-                  {post.createdAt.split("T")[0]}
-                </p>
-                <p className="mb-0">{post.text}</p>
+      {loading ? (
+        <>
+          <div className="mb-3">
+            <Placeholder xs={6} />
+            <Placeholder /> <Placeholder xs={12} />
+            <Placeholder /> <Placeholder xs={12} />
+            <Placeholder />
+          </div>
+          <div className="mb-3">
+            <Placeholder xs={6} />
+            <Placeholder /> <Placeholder xs={12} />
+            <Placeholder /> <Placeholder xs={12} />
+            <Placeholder />
+          </div>
+          <div className="mb-3">
+            <Placeholder xs={6} />
+            <Placeholder /> <Placeholder xs={12} />
+            <Placeholder /> <Placeholder xs={12} />
+            <Placeholder />
+          </div>
+        </>
+      ) : (
+        post.map((post) => (
+          <Container
+            fluid
+            key={post._id}
+            className="bg-white rounded-2  border mt-3 py-2"
+          >
+            <Col className="d-flex justify-content-between">
+              <div className="d-flex align-items-center">
+                <div>
+                  {post.image !== undefined ? (
+                    <img
+                      src={post.image}
+                      alt="img"
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  ) : (
+                    <i className="bi bi-person fs-1 me-2"></i>
+                  )}
+                </div>
+                <div className="ms-2">
+                  <p className="mb-0">{post.user.username}</p>
+
+                  <p className="mb-0 text-muted">
+                    {post.createdAt.split("T")[0]}
+                  </p>
+                  <p className="mb-0">{post.text}</p>
+                </div>
               </div>
-            </div>
-            <div className="d-flex align-content-center ">
-              <div>
-                <i className="bi bi-three-dots me-2 "></i>
+              <div className="d-flex align-content-center ">
+                <div>
+                  <i className="bi bi-three-dots me-2 "></i>
+                </div>
+                <div>
+                  <i
+                    className="bi bi-x-lg deletePost "
+                    onClick={() => {
+                      handleDelete(post._id);
+                    }}
+                  ></i>
+                </div>
               </div>
-              <div>
-                <i
-                  className="bi bi-x-lg deletePost "
-                  onClick={() => {
-                    handleDelete(post._id);
-                  }}
-                ></i>
-              </div>
-            </div>
-          </Col>
-        </Container>
-      ))}
+            </Col>
+          </Container>
+        ))
+      )}
     </div>
   );
 };
