@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Col } from "react-bootstrap";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
 
 const SearchDetails = function () {
   const [htmlContent, setHtmlContent] = useState("");
@@ -12,8 +12,8 @@ const SearchDetails = function () {
           "https://strive-benchmark.herokuapp.com/api/jobs?company=Robots"
         );
         const { data } = await response.json();
-        const sanitizedData = DOMPurify.sanitize(data[0].description); // Utilizza DOMPurify per pulire il testo HTML
-        setHtmlContent(sanitizedData);
+        // const sanitizedData = DOMPurify.sanitize(data[0].description); // Utilizza DOMPurify per pulire il testo HTML
+        setHtmlContent(data);
       } catch (error) {
         console.error("Error fetching HTML:", error);
       }
