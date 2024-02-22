@@ -20,9 +20,9 @@ const JobCenter = () => {
     <>
       <Row className="bg-white mt-2 border rounded justify-content-center px-0">
         <Col>
-          <div className="pt-2">
+          <div className="p-3 pt-5">
             <h4>Consigliato per te</h4>
-            <p>
+            <p className="cronologia">
               Sulla base del tuo profilo e della tua cronologia delle ricerche
             </p>
           </div>
@@ -36,18 +36,21 @@ const JobCenter = () => {
                     href={job.url}
                     className="text-decoration-none text-black d-flex justify-content-between"
                   >
-                    <h5>{job.title}</h5>
+                    <h5 className="bluetext">{job.title}</h5>
                     <i className="fs-4 bi bi-x "></i>
                   </a>
                   <p className=" mb-1">{job.company_name}</p>
-                  <p className=" mb-1">{job.candidate_required_location}</p>
+                  <p className=" mb-1 cronologia">
+                    {job.candidate_required_location}
+                  </p>
                   <p className=" mb-1">Tipo di contratto: {job.job_type}</p>
+                  {/* <div dangerouslySetInnerHTML={{ __html: job.description }} /> */}
                 </div>
               </div>
             </Col>
           ))}
           <Col className="py-2 border-top border-1 border-black ">
-            <h5 className="text-center">
+            <h5 className="text-center cronologia">
               Mostra tutto <i className="bi bi-arrow-right"></i>
             </h5>
           </Col>
@@ -55,9 +58,9 @@ const JobCenter = () => {
       </Row>
       <Row className="bg-white mt-2 border rounded justify-content-center px-0">
         <Col>
-          <div className="pt-2">
+          <div className="p-3 pt-5">
             <h4>Altre offerte di lavoro per te</h4>
-            <p>
+            <p className="cronologia">
               Sulla base del tuo profilo e della tua cronologia delle ricerche
             </p>
           </div>
@@ -68,10 +71,12 @@ const JobCenter = () => {
               <div>
                 <div className="border-bottom border-2 border-black-50 py-2 px-2">
                   <a href={job.url} className="text-decoration-none text-black">
-                    <h5>{job.title}</h5>
+                    <h5 className="bluetext">{job.title}</h5>
                   </a>
                   <p className=" mb-1">{job.company_name}</p>
-                  <p className=" mb-1">{job.candidate_required_location}</p>
+                  <p className=" mb-1 cronologia">
+                    {job.candidate_required_location}
+                  </p>
                   <p className=" mb-1">Tipo di contratto: {job.job_type}</p>
                 </div>
               </div>
