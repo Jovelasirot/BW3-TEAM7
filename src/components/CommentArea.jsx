@@ -1,12 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCommentPosts } from "../redux/actions/actions";
+import { addComment, fetchCommentPosts } from "../redux/actions/actions";
 import PropTypes from "prop-types";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import Stars from "./Stars";
 
-const CommentArea = () => {
+const CommentArea = ({ postId }) => {
   const commentData = useSelector((state) => state.comment.content);
+  const [showModalComment, setShowModalComment] = useState(false);
+  const dispatch = useDispatch();
+
+  const [newComment, setNewComment] = useState({
+    comment: "",
+    rate: "",
+    elementId: postId,
+  });
+
+  const handleComment = (e, postId) => {
+    e.preventDefault();
+    dispatch(addComment(newComment));
+    setShowModalComment(false);
+    dispatch(fetchCommentPosts(postId));
+  };
 
   return (
     <Container>
@@ -27,6 +42,73 @@ const CommentArea = () => {
             </div>
           </Col>
         ))}
+        <div className="px-0">
+          <Form>
+            <Form.Control
+              placeholder="Aggiungi un Commento"
+              onClick={() => setShowModalComment(true)}
+            ></Form.Control>
+          </Form>
+        </div>
+        {showModalComment && (
+          <Modal
+            show={showModalComment}
+            onHide={() => setShowModalComment(false)}
+          >
+            <Form className="mt-4 " onSubmit={handleComment}>
+              <Modal.Header closeButton>
+                <Modal.Title>Aggiungi un Commento</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form.Group className="mb-3">
+                  <Form.Label>Valuta il Post</Form.Label>
+                  <Form.Select
+                    aria-label="Default select example"
+                    id="rate"
+                    required
+                    onChange={(e) => {
+                      setNewComment({
+                        ...newComment,
+                        rate: e.target.value,
+                        postId: postId,
+                      });
+                    }}
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Scrivici la tua</Form.Label>
+                  <Form.Control
+                    value={newComment.comment}
+                    required
+                    onChange={(e) => {
+                      setNewComment({
+                        ...newComment,
+                        comment: e.target.value,
+                        elementId: postId,
+                      });
+                    }}
+                    id="comment"
+                  />
+                </Form.Group>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  disabled={newComment.comment ? false : true}
+                  variant="secondary"
+                  type="submit"
+                >
+                  Invia
+                </Button>
+              </Modal.Footer>
+            </Form>
+          </Modal>
+        )}
       </Row>
     </Container>
   );

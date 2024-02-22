@@ -200,64 +200,6 @@ const SinglePost = () => {
                   // handleComment={handleComment}
                 />
               )}
-
-              <div className="text-center">
-                <Button onClick={() => setShowModalComment(!showModalComment)}>
-                  {showModalComment
-                    ? "Chiudi form Commento"
-                    : "Aggiungi un Commento"}
-                </Button>
-              </div>
-              {showModalComment && (
-                <Form className="mt-4 " onSubmit={handleComment}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Valuta il Post</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      id="rate"
-                      required
-                      onChange={(e) => {
-                        setNewComment({
-                          ...newComment,
-                          rate: e.target.value,
-                          postId: post._id,
-                        });
-                      }}
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </Form.Select>
-                  </Form.Group>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Write your opinion here:</Form.Label>
-                    <Form.Control
-                      value={newComment.comment}
-                      required
-                      onChange={(e) => {
-                        setNewComment({
-                          ...newComment,
-                          comment: e.target.value,
-                          elementId: post._id,
-                        });
-                      }}
-                      id="comment"
-                    />
-                  </Form.Group>
-                  <div className="text-end">
-                    <Button
-                      disabled={newComment.comment ? false : true}
-                      variant="secondary"
-                      className="mb-4 text-light"
-                      type="submit"
-                    >
-                      <i className="bi bi-send"></i>
-                    </Button>
-                  </div>
-                </Form>
-              )}
             </Row>
           </Container>
         ))
