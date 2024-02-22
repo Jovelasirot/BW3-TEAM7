@@ -230,7 +230,7 @@ export const saveAllJobs = () => {
       );
       if (response.ok) {
         const { data } = await response.json();
-        const array = data.filter((post, id) => id < 50);
+        const array = data.filter((post, id) => id < 20);
         console.log("data", array);
         dispatch({ type: SAVE_ALL_JOBS, payload: array });
       } else {
@@ -249,7 +249,7 @@ export const saveCategoryJobs = () => {
     try {
       dispatch({ type: TURN_ON_SPINNER });
       const response = await fetch(
-        `https://strive-benchmark.herokuapp.com/api/jobs?category=dev&limit=10`,
+        `https://strive-benchmark.herokuapp.com/api/jobs?category=dev&limit=4`,
         {
           method: "GET",
         }
