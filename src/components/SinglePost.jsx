@@ -49,15 +49,19 @@ const SinglePost = () => {
     }
   };
 
-  const comment = (postId) => {
-    dispatch(fetchCommentPosts(postId));
+  const [selectedPostId, setSelectedPostId] = useState(null);
+
+  const toggleCommentSection = (postId) => {
+    if (selectedPostId === postId) {
+      setSelectedPostId(null);
+    } else {
+      setSelectedPostId(postId);
+      dispatch(fetchCommentPosts(postId));
+    }
   };
 
   const commentData = useSelector((state) => state.comment.content);
   console.log(commentData);
-
-  // const allUserState = useSelector((state) => state.allUser.content);
-  // console.log(allUserState);
 
   const [newComment, setNewComment] = useState({
     comment: "",
@@ -70,8 +74,6 @@ const SinglePost = () => {
 
     dispatch(addComment(newComment));
   };
-
-  const [toggleComment, seToggleComment] = useState(false);
 
   return (
     <div>
@@ -163,10 +165,7 @@ const SinglePost = () => {
                     {" "}
                     <div
                       className="d-flex justify-content-center addImg rounded-2 "
-                      onClick={() => {
-                        seToggleComment(!toggleComment);
-                        // comment(post._id);
-                      }}
+                      onClick={() => toggleCommentSection(post._id)}
                     >
                       <i className="bi bi-chat-left-dots me-2 "></i>
                       <span>Commenti</span>
@@ -188,7 +187,13 @@ const SinglePost = () => {
                   </Col>
                 </Row>
               </Col>
-              {toggleComment && <CommentArea />}
+              {selectedPostId === post._id && (
+                <CommentArea
+                  comments={commentData}
+                  postId={post._id}
+                  // handleComment={handleComment}
+                />
+              )}
               {/* <Form className="mt-4 " onSubmit={handleComment}>
                 <h5 className="text-end">Leave us your thoughts</h5>
                 <Form.Group className="mb-3">
