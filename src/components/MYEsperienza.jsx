@@ -24,7 +24,7 @@ import { addUserPost } from "../redux/actions/actions";
 import MyForm from "./MyForm";
 import pictureExperience from "../assets/esperienzepx.avif";
 
-const MyEsperienza = () => {
+const MYEsperienza = () => {
   const [showForm, setShowForm] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const reduxPosts = useSelector((state) => state.post.content);
@@ -125,4 +125,4 @@ const MyEsperienza = () => {
   );
 };
 
-export default MyEsperienza;
+export default MYEsperienza;
