@@ -11,7 +11,7 @@ import smEpiceLogo from "../assets/epicodeschool_logo.jpg";
 import smLavoratorePrivato from "../assets/lavoratore_privato_logo.jpg";
 import EditProfile from "./EditProfile";
 import MYAttività from "./MYAttività";
-import MyEsperienza from "./MyEsperienza";
+import MYEsperienza from "./MYEsperienza";
 
 const pasqualetoken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzNGU4YzI0ZjYwNTAwMTkzN2Q0ODMiLCJpYXQiOjE3MDgzNDc3NDcsImV4cCI6MTcwOTU1NzM0N30.mthqNljgtCYQEBuKoZKcMpN6a22wDf15iDkgXjJsAoY";
@@ -189,7 +189,7 @@ const ProfileTop = () => {
           <MYAttività />
         </Col>
         <Col className="px-0">
-          <MyEsperienza />
+          <MYEsperienza />
         </Col>
       </Row>
     </Col>
