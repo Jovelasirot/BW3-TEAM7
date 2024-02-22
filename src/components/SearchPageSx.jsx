@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 function SearchPageSx() {
     return(
     
-        <Col className="col-lg-2 col-md-2 d-s-none">
+        <Col className="col-lg-6 col-md-6 d-s-none">
         <Row>
           <Col>
           <section className="p-2 m-2 border border">
