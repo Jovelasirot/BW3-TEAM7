@@ -23,7 +23,7 @@ Impostazioni candidatura</p>
              </div>
           </section>
           <div className="text-center">
-          <Button variant="outline-secondary" className="jobText text-secondary"><i className="bi bi-pencil-square me-2 fw-bold buttonIcon"></i>
+          <Button className=" custom-btn  fw-bold"><i className="bi bi-pencil-square me-2 fw-bold buttonIcon"></i>
 Pubblica offerta gratuita</Button></div>
 
       </Col>
