@@ -42,6 +42,7 @@ const JobCenter = () => {
                   <p className=" mb-1">{job.company_name}</p>
                   <p className=" mb-1">{job.candidate_required_location}</p>
                   <p className=" mb-1">Tipo di contratto: {job.job_type}</p>
+                  {/* <div dangerouslySetInnerHTML={{ __html: job.description }} /> */}
                 </div>
               </div>
             </Col>
