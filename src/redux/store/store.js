@@ -6,6 +6,7 @@ import homepagePostReducer from "../reducers/homepagePostReducer";
 import jobsReducer from "../reducers/jobsReducer";
 import allUserReducer from "../reducers/allUserReducers";
 import commentReducer from "../reducers/commentsReducers";
+import querySearchReducer from "../reducers/querySearcReducer";
 const globalReducer = combineReducers({
   user: userReducer,
   post: postReducer,
@@ -14,6 +15,7 @@ const globalReducer = combineReducers({
   jobs: jobsReducer,
   allUser: allUserReducer,
   comment: commentReducer,
+  search: querySearchReducer,
 });
 
 const store = configureStore({

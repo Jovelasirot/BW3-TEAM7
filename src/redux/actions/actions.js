@@ -15,6 +15,7 @@ export const SAVE_ALL_JOBS = "SAVE_ALL_JOBS";
 export const SAVE_CATEGORY_JOBS = "SAVE_CATEGORY_JOBS";
 export const ADD_ALL_USERS_DATA = "ADD_ALL_USERS_DATA";
 export const ADD_COMMENTS_POSTS = "ADD_COMMENTS_POSTS";
+export const QUERY_SEARCH = "QUERY_SEARCH";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -343,6 +344,36 @@ export const fetchCommentPosts = (postID) => {
         const lastComments = data.slice(-10);
         dispatch({ type: ADD_COMMENTS_POSTS, payload: lastComments });
         console.log("ultimi  commenti", lastComments);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const querySearch = (query) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const myUrl =
+        "https://strive-benchmark.herokuapp.com/api/jobs?search=" + query;
+      const response = await fetch(myUrl, {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3MTY4NDc2YTY0YjAwMTllZjE5ZDciLCJpYXQiOjE3MDg1OTQ4MjAsImV4cCI6MTcwOTgwNDQyMH0.dP8PfQiDUXJctVJmUd7eu4dnGxlD0O2fJvry3_qLXO4",
+        },
+      });
+      if (response.ok) {
+        const { data } = await response.json();
+
+        const search = data.slice(0, 10);
+        dispatch({ type: QUERY_SEARCH, payload: search });
+        console.log("primi risultati", search);
       } else {
         alert("Error");
       }
