@@ -1,5 +1,4 @@
 import JobPageCenterComponent from "./JobPageCenter";
-
 import { Container, Row, Col } from "react-bootstrap";
 import HomeDxFooter from "./HomeDxFooter";
 import JobSidebarSx from "./JobSidebarSx";
