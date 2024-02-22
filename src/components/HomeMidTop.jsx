@@ -1,30 +1,46 @@
-import { Col, Container, InputGroup, Row } from "react-bootstrap";
+import { Col, Container, InputGroup, Modal, Row } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addHomePagePost } from "../redux/actions/actions";
+import { addHomePagePost, saveHomePost } from "../redux/actions/actions";
 import { useEffect, useState } from "react";
+
 const HomeMidTop = () => {
   const [postContent, setPostContent] = useState({ text: "" });
   const [selectedFile, setSelectedFile] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+
+  const profileImage = useSelector((state) => state.user.content.image);
+
   const token = useSelector((state) => state.token.token);
+
   const formData = new FormData();
-  formData.append("image", selectedFile);
+  formData.append("post", selectedFile);
+
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
     console.log(event.target.files[0]);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addHomePagePost(token, postContent, formData));
+    dispatch(saveHomePost(token));
     console.log(postContent);
     setPostContent({ text: "" });
   };
+
   return (
-    <Row className="flex-column p-2 bg-white mt-3 border border-muted rounded-2 ">
-      <Col className="d-flex ">
-        <i className="bi bi-person fs-4 "></i>
-        {/* <img src="" alt="" /> */}
+    <Row className="flex-column p-2 bg-white mt-3 border border-muted rounded-2">
+      <Col className="d-flex align-items-center">
+        {profileImage ? (
+          <div className="rounded-circle overflow-auto ">
+            <img src={profileImage} alt="" style={{ height: "50px" }} />
+          </div>
+        ) : (
+          <i className="bi bi-person fs-4 "></i>
+        )}
+
         <Form className="ms-2 flex-grow-1 " onSubmit={(e) => handleSubmit(e)}>
           <Form.Control
             placeholder="Avvia Un Post"
@@ -32,13 +48,10 @@ const HomeMidTop = () => {
           ></Form.Control>
         </Form>
       </Col>
-      <Col className="d-flex fs-4 justify-content-between ">
-        <div className="d-flex">
-          <form>
-            <input type="file" onChange={handleFileChange} />
-            <i className="bi bi-image text-secondary "></i>
-            <span className="ms-2">Contenuti multimediali</span>
-          </form>
+      <Col className="d-flex fs-5 justify-content-between ">
+        <div className="d-flex" onClick={() => setShowModal(true)}>
+          <i className="bi bi-image text-secondary "></i>
+          <span className="ms-2">Contenuti multimediali</span>
         </div>
         <div className="d-flex">
           <i className="bi bi-calendar3 text-warning"></i>
@@ -49,6 +62,20 @@ const HomeMidTop = () => {
           <span className="ms-2">Scrivi un articolo</span>
         </div>
       </Col>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Upload File</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <input type="file" onChange={handleFileChange} />
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={() => setShowModal(false)}>Continua</button>
+        </Modal.Footer>
+      </Modal>
     </Row>
   );
 };

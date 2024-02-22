@@ -11,6 +11,8 @@ export const RESET_POST_DATA = "RESET_POST_DATA";
 export const DELETE_USER_POST = "DELETE_USER_POST";
 export const SAVE_HOME_POST = "SAVE_HOME_POST";
 export const ADD_HOMEPAGE_POST = "ADD_HOMEPAGE_POST";
+export const SAVE_ALL_JOBS = "SAVE_ALL_JOBS";
+export const SAVE_CATEGORY_JOBS = "SAVE_CATEGORY_JOBS";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -164,7 +166,7 @@ const editImage = (id, token, image) => {
       const response = await fetch(
         `https://striveschool-api.herokuapp.com/api/posts/${id}`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -173,7 +175,7 @@ const editImage = (id, token, image) => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log("data", data);
+        console.log("image", data);
       } else {
         alert("Error");
       }
@@ -205,12 +207,88 @@ export const addHomePagePost = (token, text, image) => {
         dispatch(editImage(data._id, token, image));
         console.log("data", data);
       } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const saveAllJobs = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://strive-benchmark.herokuapp.com/api/jobs`,
+        {
+          method: "GET",
+        }
+      );
+      if (response.ok) {
+        const { data } = await response.json();
+        const array = data.filter((post, id) => id < 20);
+        console.log("data", array);
+        dispatch({ type: SAVE_ALL_JOBS, payload: array });
+      } else {
         alert("Error");
       }
     } catch (error) {
       console.log(error);
     } finally {
       dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const saveCategoryJobs = () => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://strive-benchmark.herokuapp.com/api/jobs?category=dev&limit=4`,
+        {
+          method: "GET",
+        }
+      );
+      if (response.ok) {
+        const { data } = await response.json();
+        const array = data.filter((post, id) => id < 50);
+        console.log("data", array);
+        dispatch({ type: SAVE_CATEGORY_JOBS, payload: data });
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const deletePost = (postId, userToken) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+      } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };
