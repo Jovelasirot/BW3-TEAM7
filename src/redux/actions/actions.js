@@ -336,7 +336,7 @@ export const fetchCommentPosts = (postID) => {
         method: "GET",
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3MTY4NDc2YTY0YjAwMTllZjE5ZDciLCJpYXQiOjE3MDg1OTQ4MjAsImV4cCI6MTcwOTgwNDQyMH0.dP8PfQiDUXJctVJmUd7eu4dnGxlD0O2fJvry3_qLXO4",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
         },
       });
       if (response.ok) {
@@ -397,7 +397,7 @@ export const addComment = (comment) => {
         method: "POST",
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3MTY4NDc2YTY0YjAwMTllZjE5ZDciLCJpYXQiOjE3MDg1OTQ4MjAsImV4cCI6MTcwOTgwNDQyMH0.dP8PfQiDUXJctVJmUd7eu4dnGxlD0O2fJvry3_qLXO4",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(comment),
@@ -413,6 +413,31 @@ export const addComment = (comment) => {
       console.log(error);
     } finally {
       dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const deleteComment = (commentID) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/comments/${commentID}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        alert("Commento eliminato");
+      } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };

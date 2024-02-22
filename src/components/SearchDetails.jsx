@@ -37,7 +37,7 @@ const SearchDetails = function () {
 
   return (
     <>
-      <Col className="col-lg-6">
+      <Col className="col-lg-6 bg-white">
         <h3>{currentJob.title}</h3>
         <p>{currentJob.description}</p>
 
