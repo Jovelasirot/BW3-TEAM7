@@ -13,13 +13,13 @@ import Stars from "./Stars";
 const CommentArea = ({ postId }) => {
   const commentData = useSelector((state) => state.comment.content);
   const [showModalComment, setShowModalComment] = useState(false);
-  const dispatch = useDispatch();
-
+  const [showModiyComment, setShowModifyComment] = useState(false);
   const [newComment, setNewComment] = useState({
     comment: "",
     rate: "1",
     elementId: postId,
   });
+  const dispatch = useDispatch();
 
   const handleComment = (e, postId) => {
     e.preventDefault();
@@ -32,11 +32,11 @@ const CommentArea = ({ postId }) => {
     dispatch(deleteComment(commentID));
   };
 
-  const [showModiyComment, setShowModifyComment] = useState(false);
-
   const handleModifyComment = (comment) => {
     setShowModifyComment(true);
-    setNewComment(comment);
+    setNewComment({
+      ...comment,
+    });
   };
 
   const handleSaveModifiedComment = () => {
@@ -48,8 +48,8 @@ const CommentArea = ({ postId }) => {
   return (
     <Container>
       <Row className="flex-column gy-2 m-2 ">
-        {commentData.map((comment, index) => (
-          <Col key={index} className="bg-light p-2 rounded-1  ">
+        {commentData.map((comment) => (
+          <Col key={comment._id} className="bg-light p-2 rounded-1">
             <div>
               <div className="d-flex justify-content-between ">
                 <div>
@@ -61,7 +61,7 @@ const CommentArea = ({ postId }) => {
                 <div>
                   <i
                     className="bi bi-three-dots me-2 "
-                    onClick={() => setShowModifyComment(true)}
+                    onClick={() => handleModifyComment(comment)}
                   ></i>
                   <i
                     className="bi bi-x-lg"
