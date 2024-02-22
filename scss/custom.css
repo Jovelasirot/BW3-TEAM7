@@ -111,6 +111,14 @@
   box-shadow: 1px 8px 15px -4px #b3b1b1;
 }
 
+.coloredStars {
+  color: #0A66C2;
+}
+
+.notColoredStars {
+  color: #9fa0a0;
+}
+
 /*!
  * Bootstrap  v5.3.2 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
