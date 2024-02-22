@@ -16,6 +16,7 @@ import {
   fetchCommentPosts,
   saveHomePost,
 } from "../redux/actions/actions";
+import CommentArea from "./CommentArea";
 
 const SinglePost = () => {
   const loading = useSelector((state) => state.post.loading);
@@ -52,6 +53,9 @@ const SinglePost = () => {
     dispatch(fetchCommentPosts(postId));
   };
 
+  const commentData = useSelector((state) => state.comment.content);
+  console.log(commentData);
+
   // const allUserState = useSelector((state) => state.allUser.content);
   // console.log(allUserState);
 
@@ -66,6 +70,8 @@ const SinglePost = () => {
 
     dispatch(addComment(newComment));
   };
+
+  const [toggleComment, seToggleComment] = useState(false);
 
   return (
     <div>
@@ -136,13 +142,6 @@ const SinglePost = () => {
                       }}
                     ></i>
                   </div>
-                  <Button
-                    onClick={() => {
-                      comment(post._id);
-                    }}
-                  >
-                    comments
-                  </Button>
                 </div>
               </Col>
               <Col xs={12}>
@@ -162,9 +161,15 @@ const SinglePost = () => {
                   </Col>
                   <Col>
                     {" "}
-                    <div className="d-flex justify-content-center addImg rounded-2 ">
+                    <div
+                      className="d-flex justify-content-center addImg rounded-2 "
+                      onClick={() => {
+                        seToggleComment(!toggleComment);
+                        // comment(post._id);
+                      }}
+                    >
                       <i className="bi bi-chat-left-dots me-2 "></i>
-                      <span>Commenta</span>
+                      <span>Commenti</span>
                     </div>
                   </Col>
                   <Col>
@@ -183,11 +188,12 @@ const SinglePost = () => {
                   </Col>
                 </Row>
               </Col>
-              <Form className="mt-4 " onSubmit={handleComment}>
+              {toggleComment && <CommentArea />}
+              {/* <Form className="mt-4 " onSubmit={handleComment}>
                 <h5 className="text-end">Leave us your thoughts</h5>
                 <Form.Group className="mb-3">
                   <Form.Label>Rate this posts</Form.Label>
-                  {/* <Form.Select
+                  <Form.Select
                     aria-label="Default select example"
                     id="rate"
                     required
@@ -199,27 +205,12 @@ const SinglePost = () => {
                       });
                     }}
                   >
-                    <option value="1"></option>
+                    <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                  </Form.Select> */}
-                  <Form.Group className="mb-3">
-                    <Form.Label>Rate:</Form.Label>
-                    <Form.Control
-                      value={newComment.rate}
-                      required
-                      onChange={(e) => {
-                        setNewComment({
-                          ...newComment,
-                          rate: e.target.value,
-                          elementId: post._id,
-                        });
-                      }}
-                      id="comment"
-                    />
-                  </Form.Group>
+                  </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Write your opinion here:</Form.Label>
@@ -246,7 +237,7 @@ const SinglePost = () => {
                     <i className="bi bi-send"></i>
                   </Button>
                 </div>
-              </Form>
+              </Form> */}
             </Row>
           </Container>
         ))

@@ -404,6 +404,7 @@ export const addComment = (comment) => {
       if (response.ok) {
         const data = await response.json();
         console.log("comment added", data);
+        alert("comment added");
       } else {
         console.log("Error");
       }
