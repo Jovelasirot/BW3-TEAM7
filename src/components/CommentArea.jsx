@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, fetchCommentPosts } from "../redux/actions/actions";
+import {
+  addComment,
+  deleteComment,
+  fetchCommentPosts,
+} from "../redux/actions/actions";
 import PropTypes from "prop-types";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import Stars from "./Stars";
@@ -12,7 +16,7 @@ const CommentArea = ({ postId }) => {
 
   const [newComment, setNewComment] = useState({
     comment: "",
-    rate: "",
+    rate: "1",
     elementId: postId,
   });
 
@@ -23,18 +27,31 @@ const CommentArea = ({ postId }) => {
     dispatch(fetchCommentPosts(postId));
   };
 
+  const handleDeleteComment = (commentID) => {
+    dispatch(deleteComment(commentID));
+  };
+
   return (
     <Container>
       <Row className="flex-column gy-2 m-2 ">
         {commentData.map((comment, index) => (
           <Col key={index} className="bg-light p-2 rounded-1  ">
             <div>
-              <div>
-                <span className="fw-semibold me-2">{comment.author}</span>
-                <span style={{ fontSize: "12px" }}>
-                  {comment.createdAt.split("T")[0]}
-                </span>
+              <div className="d-flex justify-content-between ">
+                <div>
+                  <span className="fw-semibold me-2">{comment.author}</span>
+                  <span style={{ fontSize: "12px" }}>
+                    {comment.createdAt.split("T")[0]}
+                  </span>
+                </div>
+                <div>
+                  <i
+                    className="bi bi-x-lg"
+                    onClick={() => handleDeleteComment(comment._id)}
+                  ></i>
+                </div>
               </div>
+
               <div>
                 <Stars Stars={comment.rate} />
               </div>
