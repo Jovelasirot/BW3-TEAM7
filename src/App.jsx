@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Messagistica from "./components/Messaggistica";
 import Job from "./components/Job";
+import SearchPage from "./components/SearchPageComponent";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/profile/:username" element={<CombineProfilePage />} />
           <Route path="/" element={<Home />} />
+          <Route path="/Lavoro/:query" element={<SearchPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/Lavoro" element={<Job />} />
         </Routes>
