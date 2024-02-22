@@ -4,6 +4,7 @@ import {
   addComment,
   deleteComment,
   fetchCommentPosts,
+  modifyComment,
 } from "../redux/actions/actions";
 import PropTypes from "prop-types";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
@@ -31,6 +32,19 @@ const CommentArea = ({ postId }) => {
     dispatch(deleteComment(commentID));
   };
 
+  const [showModiyComment, setShowModifyComment] = useState(false);
+
+  const handleModifyComment = (comment) => {
+    setShowModifyComment(true);
+    setNewComment(comment);
+  };
+
+  const handleSaveModifiedComment = () => {
+    dispatch(modifyComment(newComment._id, newComment));
+    setShowModifyComment(false);
+    dispatch(fetchCommentPosts(postId));
+  };
+
   return (
     <Container>
       <Row className="flex-column gy-2 m-2 ">
@@ -45,6 +59,10 @@ const CommentArea = ({ postId }) => {
                   </span>
                 </div>
                 <div>
+                  <i
+                    className="bi bi-three-dots me-2 "
+                    onClick={() => setShowModifyComment(true)}
+                  ></i>
                   <i
                     className="bi bi-x-lg"
                     onClick={() => handleDeleteComment(comment._id)}
@@ -126,6 +144,62 @@ const CommentArea = ({ postId }) => {
             </Form>
           </Modal>
         )}
+        <Modal
+          show={showModiyComment}
+          onHide={() => setShowModifyComment(false)}
+        >
+          <Form className="mt-4 " onSubmit={handleSaveModifiedComment}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modifica il commento</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form.Group className="mb-3">
+                <Form.Label>Cambia la valutazione</Form.Label>
+                <Form.Select
+                  aria-label="Default select example"
+                  id="rate"
+                  required
+                  value={newComment.rate}
+                  onChange={(e) =>
+                    setNewComment({
+                      ...newComment,
+                      rate: e.target.value,
+                    })
+                  }
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Aggiorna il testo</Form.Label>
+                <Form.Control
+                  value={newComment.comment}
+                  required
+                  onChange={(e) =>
+                    setNewComment({
+                      ...newComment,
+                      comment: e.target.value,
+                    })
+                  }
+                  id="comment"
+                />
+              </Form.Group>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                disabled={!newComment.comment}
+                variant="secondary"
+                type="submit"
+              >
+                Modifica Commento
+              </Button>
+            </Modal.Footer>
+          </Form>
+        </Modal>
       </Row>
     </Container>
   );

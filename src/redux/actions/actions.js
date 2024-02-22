@@ -441,3 +441,30 @@ export const deleteComment = (commentID) => {
     }
   };
 };
+
+export const modifyComment = (commentID, updatedCommentData) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/comments/${commentID}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
+          },
+          body: JSON.stringify(updatedCommentData),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        alert("Commento modificato");
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+};
