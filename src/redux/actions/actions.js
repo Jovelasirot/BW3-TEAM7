@@ -339,12 +339,42 @@ export const fetchCommentPosts = (postID) => {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("post Id", postID);
-        const lastComments = data.slice(-10);
-        dispatch({ type: ADD_COMMENTS_POSTS, payload: lastComments });
-        console.log("ultimi  commenti", lastComments);
+        const filteredComments = data.filter(
+          (comment) => comment.elementId === postID
+        );
+
+        dispatch({ type: ADD_COMMENTS_POSTS, payload: filteredComments });
+        console.log(" commenti", filteredComments);
       } else {
         alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const addComment = (comment) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const myUrl = "https://striveschool-api.herokuapp.com/api/comments/";
+      const response = await fetch(myUrl, {
+        method: "POST",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3MTY4NDc2YTY0YjAwMTllZjE5ZDciLCJpYXQiOjE3MDg1OTQ4MjAsImV4cCI6MTcwOTgwNDQyMH0.dP8PfQiDUXJctVJmUd7eu4dnGxlD0O2fJvry3_qLXO4",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(comment),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("comment added", data);
+      } else {
+        console.log("Error");
       }
     } catch (error) {
       console.log(error);

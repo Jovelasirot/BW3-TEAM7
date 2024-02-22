@@ -1,8 +1,16 @@
-import { useEffect } from "react";
-import { Button, Col, Container, Placeholder, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Placeholder,
+  Row,
+} from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
+  addComment,
   deletePost,
   fetchAllUser,
   fetchCommentPosts,
@@ -46,6 +54,18 @@ const SinglePost = () => {
 
   // const allUserState = useSelector((state) => state.allUser.content);
   // console.log(allUserState);
+
+  const [newComment, setNewComment] = useState({
+    comment: "",
+    rate: "",
+    elementId: post._id,
+  });
+
+  const handleComment = (e) => {
+    e.preventDefault();
+
+    dispatch(addComment(newComment));
+  };
 
   return (
     <div>
@@ -163,6 +183,70 @@ const SinglePost = () => {
                   </Col>
                 </Row>
               </Col>
+              <Form className="mt-4 " onSubmit={handleComment}>
+                <h5 className="text-end">Leave us your thoughts</h5>
+                <Form.Group className="mb-3">
+                  <Form.Label>Rate this posts</Form.Label>
+                  {/* <Form.Select
+                    aria-label="Default select example"
+                    id="rate"
+                    required
+                    onChange={(e) => {
+                      setNewComment({
+                        ...newComment,
+                        rate: e.target.value,
+                        postId: post._id,
+                      });
+                    }}
+                  >
+                    <option value="1"></option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </Form.Select> */}
+                  <Form.Group className="mb-3">
+                    <Form.Label>Rate:</Form.Label>
+                    <Form.Control
+                      value={newComment.rate}
+                      required
+                      onChange={(e) => {
+                        setNewComment({
+                          ...newComment,
+                          rate: e.target.value,
+                          elementId: post._id,
+                        });
+                      }}
+                      id="comment"
+                    />
+                  </Form.Group>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Write your opinion here:</Form.Label>
+                  <Form.Control
+                    value={newComment.comment}
+                    required
+                    onChange={(e) => {
+                      setNewComment({
+                        ...newComment,
+                        comment: e.target.value,
+                        elementId: post._id,
+                      });
+                    }}
+                    id="comment"
+                  />
+                </Form.Group>
+                <div className="text-end">
+                  <Button
+                    disabled={newComment.comment ? false : true}
+                    variant="secondary"
+                    className="mb-4 text-light"
+                    type="submit"
+                  >
+                    <i className="bi bi-send"></i>
+                  </Button>
+                </div>
+              </Form>
             </Row>
           </Container>
         ))
