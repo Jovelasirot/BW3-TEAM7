@@ -21,9 +21,6 @@ function SearchPageSx() {
     Impostazioni candidatura</p>
                  </div>
               </section>
-              <div className="text-center">
-              <Button className=" custom-btn  fw-bold"><i className="bi bi-pencil-square me-2 fw-bold buttonIcon"></i>
-    Pubblica offerta gratuita</Button></div>
     
           </Col>
           </Row>
