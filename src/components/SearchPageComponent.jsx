@@ -1,8 +1,15 @@
+import { Container, Row } from "react-bootstrap";
+import SearchPageSx from "./SearchPageSx";
+
+
+
 const SearchPage = () => {
   return (
-    <div>
-      <h1>SearchPage</h1>
-    </div>
+      <Container>
+        <Row>
+      <SearchPageSx/>
+      </Row>
+    </Container>
   );
 };
 
