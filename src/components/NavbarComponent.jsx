@@ -43,6 +43,7 @@ function NavbarComponent() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    e.target.reset();
     navigate(`/Lavoro/${query}`);
   };
 
