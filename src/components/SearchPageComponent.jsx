@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { querySearch } from "../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
+import SearchDetails from "./SearchDetails";
 
 const SearchPage = () => {
   const { query } = useParams();
@@ -16,6 +17,7 @@ const SearchPage = () => {
     <Container>
       <Row>
         <SearchPageSx />
+        <SearchDetails />
       </Row>
     </Container>
   );
