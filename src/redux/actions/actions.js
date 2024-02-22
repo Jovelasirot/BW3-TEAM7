@@ -16,6 +16,7 @@ export const SAVE_CATEGORY_JOBS = "SAVE_CATEGORY_JOBS";
 export const ADD_ALL_USERS_DATA = "ADD_ALL_USERS_DATA";
 export const ADD_COMMENTS_POSTS = "ADD_COMMENTS_POSTS";
 export const QUERY_SEARCH = "QUERY_SEARCH";
+export const CURRENT_COMPANY = "CURRENT_COMPANY";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
