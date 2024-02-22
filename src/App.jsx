@@ -10,7 +10,7 @@ import Job from "./components/Job";
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-light vh-100">
+      <div className="bg-light ">
         <NavbarComponent />
         <Routes>
           <Route path="/profile/:username" element={<CombineProfilePage />} />

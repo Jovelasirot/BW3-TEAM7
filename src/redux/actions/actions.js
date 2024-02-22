@@ -310,8 +310,9 @@ export const fetchAllUser = (token) => {
       );
       if (response.ok) {
         const data = await response.json();
-        dispatch({ type: ADD_ALL_USERS_DATA, payload: data });
-        console.log("tutti i profili", data);
+        const lastUsersData = data.slice(-40);
+        dispatch({ type: ADD_ALL_USERS_DATA, payload: lastUsersData });
+        console.log("tutti i profili", lastUsersData);
       } else {
         alert("Error");
       }
