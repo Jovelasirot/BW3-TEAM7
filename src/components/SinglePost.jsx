@@ -4,6 +4,7 @@ import {
   Col,
   Container,
   Form,
+  Modal,
   Placeholder,
   Row,
 } from "react-bootstrap";
@@ -69,10 +70,13 @@ const SinglePost = () => {
     elementId: post._id,
   });
 
-  const handleComment = (e) => {
-    e.preventDefault();
+  const [showModalComment, setShowModalComment] = useState(false);
 
+  const handleComment = (e, postId) => {
+    e.preventDefault();
     dispatch(addComment(newComment));
+    setShowModalComment(false);
+    dispatch(fetchCommentPosts(postId));
   };
 
   return (
@@ -123,13 +127,15 @@ const SinglePost = () => {
                       <i className="bi bi-person fs-1 me-2"></i>
                     )}
                   </div>
-                  <div className="ms-2">
+                  <div className="ms-2 w-100 ">
                     <p className="mb-0">{post.user.username}</p>
 
                     <p className="mb-0 text-muted">
                       {post.createdAt.split("T")[0]}
                     </p>
-                    <p className="mb-0">{post.text}</p>
+                    <span className="mb-0" style={{ wordWrap: "break-word" }}>
+                      {post.text}
+                    </span>
                   </div>
                 </div>
                 <div className="d-flex align-content-center ">
@@ -194,55 +200,64 @@ const SinglePost = () => {
                   // handleComment={handleComment}
                 />
               )}
-              {/* <Form className="mt-4 " onSubmit={handleComment}>
-                <h5 className="text-end">Leave us your thoughts</h5>
-                <Form.Group className="mb-3">
-                  <Form.Label>Rate this posts</Form.Label>
-                  <Form.Select
-                    aria-label="Default select example"
-                    id="rate"
-                    required
-                    onChange={(e) => {
-                      setNewComment({
-                        ...newComment,
-                        rate: e.target.value,
-                        postId: post._id,
-                      });
-                    }}
-                  >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>Write your opinion here:</Form.Label>
-                  <Form.Control
-                    value={newComment.comment}
-                    required
-                    onChange={(e) => {
-                      setNewComment({
-                        ...newComment,
-                        comment: e.target.value,
-                        elementId: post._id,
-                      });
-                    }}
-                    id="comment"
-                  />
-                </Form.Group>
-                <div className="text-end">
-                  <Button
-                    disabled={newComment.comment ? false : true}
-                    variant="secondary"
-                    className="mb-4 text-light"
-                    type="submit"
-                  >
-                    <i className="bi bi-send"></i>
-                  </Button>
-                </div>
-              </Form> */}
+
+              <div className="text-center">
+                <Button onClick={() => setShowModalComment(!showModalComment)}>
+                  {showModalComment
+                    ? "Chiudi form Commento"
+                    : "Aggiungi un Commento"}
+                </Button>
+              </div>
+              {showModalComment && (
+                <Form className="mt-4 " onSubmit={handleComment}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Valuta il Post</Form.Label>
+                    <Form.Select
+                      aria-label="Default select example"
+                      id="rate"
+                      required
+                      onChange={(e) => {
+                        setNewComment({
+                          ...newComment,
+                          rate: e.target.value,
+                          postId: post._id,
+                        });
+                      }}
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Write your opinion here:</Form.Label>
+                    <Form.Control
+                      value={newComment.comment}
+                      required
+                      onChange={(e) => {
+                        setNewComment({
+                          ...newComment,
+                          comment: e.target.value,
+                          elementId: post._id,
+                        });
+                      }}
+                      id="comment"
+                    />
+                  </Form.Group>
+                  <div className="text-end">
+                    <Button
+                      disabled={newComment.comment ? false : true}
+                      variant="secondary"
+                      className="mb-4 text-light"
+                      type="submit"
+                    >
+                      <i className="bi bi-send"></i>
+                    </Button>
+                  </div>
+                </Form>
+              )}
             </Row>
           </Container>
         ))
