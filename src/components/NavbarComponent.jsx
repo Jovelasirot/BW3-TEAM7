@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LogoNav from "../assets/LogoNav.png";
 import { useSelector } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
@@ -12,7 +12,9 @@ import { useEffect, useState } from "react";
 
 function NavbarComponent() {
   const [showSecondContainer, setShowSecondContainer] = useState(false);
+  const [query, setQuery] = useState("");
   const userData = useSelector((state) => state.user.content);
+  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -36,6 +38,14 @@ function NavbarComponent() {
     };
   }, []);
 
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/Lavoro/${query}`);
+  };
+
   return (
     <Container fluid className=" sticky-lg-top px-0">
       <Container fluid className="border-bottom bg-white">
@@ -53,7 +63,7 @@ function NavbarComponent() {
                 </span>
 
                 <span>
-                  <Form className="mt-1">
+                  <Form className="mt-1" onSubmit={(e) => handleSubmit(e)}>
                     <InputGroup>
                       <InputGroup.Text id="basic-addon1" className="bg-primary">
                         <i className="bi bi-search"></i>
@@ -64,6 +74,7 @@ function NavbarComponent() {
                         aria-describedby="basic-addon1"
                         className="bg-primary"
                         width={60}
+                        onChange={handleChange}
                       />
                     </InputGroup>
                   </Form>
