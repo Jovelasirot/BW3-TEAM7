@@ -26,7 +26,7 @@ function SearchPageSx() {
     <Col className="col-lg-6 col-md-6 d-s-none">
       <Row>
         <Col>
-          <section className="p-2 m-2 border border">
+          <section className="p-2 ">
             {jobsArray.map((job) => (
               <Row
                 key={job._id}
@@ -38,8 +38,8 @@ function SearchPageSx() {
                 }}
                 className={
                   job.title === current.title
-                    ? "bg-secondary bg-opacity-10 "
-                    : ""
+                    ? "bg-secondary bg-opacity-10 border-bottom py-2"
+                    : "border-bottom py-2"
                 }
               >
                 <Col className="col-2">
@@ -88,7 +88,6 @@ function SearchPageSx() {
                       </span>
                     </div>
                   </div>
-                  <hr />
                 </Col>
               </Row>
             ))}{" "}
