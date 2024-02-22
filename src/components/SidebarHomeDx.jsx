@@ -20,41 +20,45 @@ const SidebarHomeDx = () => {
 
   return (
     <>
-      <Col lg={3} className="d-none d-md-block">
+      <Col lg={3} className="d-none d-md-block mt-3 ">
         {" "}
-        <section>
-          <div className="d-flex justify-content-between">
+        <section className="border border-muted">
+          <div className="d-flex justify-content-between ">
             <h5 className="m-3">LinkedIn Notizie</h5>
             <i className="bi bi-info-square-fill m-3"></i>
           </div>
-          <ListGroup as="ul">
+          <div className="px-3">
             {items.slice(0, 5).map((item, index) => (
               <ListGroup.Item key={index} as="li">
                 <h6>{item.title}</h6>
                 <p>{item.content}</p>
               </ListGroup.Item>
             ))}
-          </ListGroup>
+          </div>
 
           {espandiLista && (
-            <ListGroup as="ul">
+            <div className="px-3">
               {items.slice(5).map((item, index) => (
                 <ListGroup.Item key={index} as="li">
                   <h6>{item.title}</h6>
                   <p>{item.content}</p>
                 </ListGroup.Item>
               ))}
-            </ListGroup>
+            </div>
           )}
 
           {items.length > 5 && (
-            <div className="text-center">
-              <Button
-                onClick={() => setEspandiLista(!espandiLista)}
-                className="mt-3"
-              >
-                {espandiLista ? "Meno dettagli" : "Vedi altro"}
-              </Button>
+            <div className="ms-3 mb-3">
+              <div onClick={() => setEspandiLista(!espandiLista)}>
+                <span className="showMore p-2 rounded-2">
+                  {espandiLista ? "Meno dettagli" : "Vedi altro"}
+                  {espandiLista ? (
+                    <i className="bi bi-caret-up"></i>
+                  ) : (
+                    <i className="bi bi-caret-down"></i>
+                  )}
+                </span>
+              </div>
             </div>
           )}
         </section>

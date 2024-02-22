@@ -4,15 +4,17 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogoNav from "../assets/LogoNav.png";
 import { useSelector } from "react-redux";
-import { Badge, Button, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 function NavbarComponent() {
   const [showSecondContainer, setShowSecondContainer] = useState(false);
   const userData = useSelector((state) => state.user.content);
+
+  const location = useLocation();
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -71,8 +73,14 @@ function NavbarComponent() {
 
             <Col>
               <Col>
-                <Row className="align-items-center">
-                  <Col className="d-flex flex-column text-center g-0">
+                <Row>
+                  <Col
+                    className={
+                      location.pathname === "/"
+                        ? "d-flex flex-column  text-center g-0 border-bottom border-dark mt-2"
+                        : "d-flex flex-column text-center g-0 iconsAnima mt-2"
+                    }
+                  >
                     <span href="#">
                       <Link to="/" className="text-decoration-none">
                         <i className="bi bi-house-door-fill icons py-0"></i>
@@ -81,33 +89,39 @@ function NavbarComponent() {
                     <span className="navbar-text py-0">Home</span>
                   </Col>
 
-                  <Col className="d-flex flex-column text-center g-0">
+                  <Col className="d-flex flex-column text-center g-0 iconsAnima mt-2">
                     <span href="#">
                       <i className="bi bi-people-fill icons"></i>
                     </span>
                     <span className="navbar-text py-0">Rete</span>
                   </Col>
-                  <Col className="d-flex flex-column text-center g-0">
+                  <Col
+                    className={
+                      location.pathname === "/Lavoro"
+                        ? "d-flex flex-column text-center g-0 border-bottom border-dark mt-2"
+                        : "d-flex flex-column text-center g-0 iconsAnima mt-2"
+                    }
+                  >
                     <span href="#">
-                      <Link to="/job" className="text-decoration-none">
-                        <i className="bi bi-suitcase-lg icons py-0"></i>
+                      <Link to="/Lavoro" className="text-decoration-none">
+                        <i className="bi bi-suitcase-lg-fill icons py-0"></i>
                       </Link>
                     </span>
                     <span className="navbar-text py-0">Lavoro</span>
                   </Col>
-                  <Col className="d-flex flex-column text-center g-0">
+                  <Col className="d-flex flex-column text-center g-0 iconsAnima  mt-2">
                     <span href="#">
-                      <i className="bi bi-chat-dots icons"></i>
+                      <i className="bi bi-chat-right-dots-fill icons "></i>
                     </span>
                     <span className="navbar-text py-0">Messaggistica</span>
                   </Col>
-                  <Col className="d-flex flex-column text-center g-0">
+                  <Col className="d-flex flex-column text-center g-0 iconsAnima mt-2">
                     <span href="#">
                       <i className="bi bi-bell-fill icons"></i>
                     </span>
                     <span className="navbar-text py-0">Notifiche</span>
                   </Col>
-                  <Col className=" d-flex flex-column text-center px-0 border-end ">
+                  <Col className=" d-flex flex-column text-center px-0 border-end pt-2">
                     <span className="me-1 mt-1 ">
                       <img
                         src={userData.image}

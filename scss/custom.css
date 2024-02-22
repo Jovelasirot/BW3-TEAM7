@@ -15,6 +15,18 @@
   background-color: #e4e4e4;
 }
 
+.deletePost {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.deletePost:hover {
+  background-color: #e4e4e4;
+}
+
 .miniNavText {
   font-size: 14px;
 }
@@ -54,6 +66,51 @@
     display: none;
   }
 }
+.showMore {
+  cursor: pointer;
+}
+.showMore:hover {
+  background-color: #e4e4e4;
+}
+
+.iconsAnima {
+  opacity: 0.8;
+}
+.iconsAnima:hover, .iconsAnima:active {
+  opacity: 1;
+}
+
+.addImg {
+  cursor: pointer;
+}
+.addImg:hover {
+  background-color: #e4e4e4;
+}
+
+.txtArea {
+  resize: none;
+  border-style: none;
+  border-color: Transparent;
+  overflow: auto;
+}
+
+.addImgModal {
+  background-color: #e6e5e5;
+  padding: 30px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #e6e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.addImgModal:hover {
+  background-color: #ecebeb;
+  border: 1px solid #dadada;
+  box-shadow: 1px 8px 15px -4px #b3b1b1;
+}
+
 /*!
  * Bootstrap  v5.3.2 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors

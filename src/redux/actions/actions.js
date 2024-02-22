@@ -13,6 +13,7 @@ export const SAVE_HOME_POST = "SAVE_HOME_POST";
 export const ADD_HOMEPAGE_POST = "ADD_HOMEPAGE_POST";
 export const SAVE_ALL_JOBS = "SAVE_ALL_JOBS";
 export const SAVE_CATEGORY_JOBS = "SAVE_CATEGORY_JOBS";
+export const ADD_ALL_USERS_DATA = "ADD_ALL_USERS_DATA";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -145,7 +146,7 @@ export const saveHomePost = (token) => {
       );
       if (response.ok) {
         const data = await response.json();
-        const array = data.filter((post, id) => id > 700);
+        const array = data.slice(-10);
         array.reverse();
         console.log("array", array);
         dispatch({ type: SAVE_HOME_POST, payload: array });
@@ -286,9 +287,39 @@ export const deletePost = (postId, userToken) => {
         const data = await response.json();
       } else {
         console.log("Error");
+        alert("Puoi eliminare solo i tuoi post");
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+export const fetchAllUser = (token) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/profile/`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        const lastUsersData = data.slice(-40);
+        dispatch({ type: ADD_ALL_USERS_DATA, payload: lastUsersData });
+        console.log("tutti i profili", lastUsersData);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
     }
   };
 };
