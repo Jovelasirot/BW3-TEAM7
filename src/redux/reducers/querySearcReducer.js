@@ -1,7 +1,9 @@
 import { QUERY_SEARCH } from "../actions/actions";
+import { CURRENT_COMPANY } from "../actions/actions";
 
 const initialState = {
   content: [],
+  current: {},
 };
 
 const querySearchReducer = (state = initialState, action) => {
@@ -10,6 +12,11 @@ const querySearchReducer = (state = initialState, action) => {
       return {
         ...state,
         content: action.payload,
+      };
+    case CURRENT_COMPANY:
+      return {
+        ...state,
+        current: action.payload,
       };
     default:
       return state;
