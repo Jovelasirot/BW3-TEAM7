@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import {
   deletePost,
   fetchAllUser,
+  fetchCommentPosts,
   saveHomePost,
 } from "../redux/actions/actions";
 
@@ -17,7 +18,6 @@ const SinglePost = () => {
   const token =
     useSelector((state) => state.token.token) ||
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTI0MTI0ZjYwNTAwMTkzN2Q0NjAiLCJpYXQiOjE3MDgzMzE1ODUsImV4cCI6MTcwOTU0MTE4NX0.Th8sgbTW3CgZXXpWkdeUdUQLB-SZvMattf9ctCL5H8M";
-  console.log(token);
   const dispatch = useDispatch();
   console.log("post", post);
 
@@ -40,23 +40,15 @@ const SinglePost = () => {
     }
   };
 
-  // const allUser = () => {
-  //   dispatch(fetchAllUser(token));
-  // };
+  const comment = (postId) => {
+    dispatch(fetchCommentPosts(postId));
+  };
 
   // const allUserState = useSelector((state) => state.allUser.content);
   // console.log(allUserState);
 
   return (
     <div>
-      {/* <Button
-        onClick={() => {
-          allUser();
-        }}
-      >
-        see all user
-      </Button> */}
-
       {loading ? (
         <>
           <div className="mb-3">
@@ -124,6 +116,13 @@ const SinglePost = () => {
                       }}
                     ></i>
                   </div>
+                  <Button
+                    onClick={() => {
+                      comment(post._id);
+                    }}
+                  >
+                    comments
+                  </Button>
                 </div>
               </Col>
               <Col xs={12}>

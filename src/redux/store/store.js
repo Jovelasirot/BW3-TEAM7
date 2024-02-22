@@ -5,6 +5,7 @@ import currentTokenReducer from "../reducers/currentTokenReducer";
 import homepagePostReducer from "../reducers/homepagePostReducer";
 import jobsReducer from "../reducers/jobsReducer";
 import allUserReducer from "../reducers/allUserReducers";
+import commentReducer from "../reducers/commentsReducers";
 const globalReducer = combineReducers({
   user: userReducer,
   post: postReducer,
@@ -12,6 +13,7 @@ const globalReducer = combineReducers({
   homePage: homepagePostReducer,
   jobs: jobsReducer,
   allUser: allUserReducer,
+  comment: commentReducer,
 });
 
 const store = configureStore({
