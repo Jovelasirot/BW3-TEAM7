@@ -46,7 +46,7 @@ const SinglePost = () => {
       dispatch(deletePost(postID, token));
       dispatch(saveHomePost(token));
     } else {
-      console.log("Il post è statp eliminato");
+      console.log("Il post è stato eliminato");
     }
   };
 
@@ -63,21 +63,6 @@ const SinglePost = () => {
 
   const commentData = useSelector((state) => state.comment.content);
   console.log(commentData);
-
-  const [newComment, setNewComment] = useState({
-    comment: "",
-    rate: "",
-    elementId: post._id,
-  });
-
-  const [showModalComment, setShowModalComment] = useState(false);
-
-  const handleComment = (e, postId) => {
-    e.preventDefault();
-    dispatch(addComment(newComment));
-    setShowModalComment(false);
-    dispatch(fetchCommentPosts(postId));
-  };
 
   return (
     <div>
