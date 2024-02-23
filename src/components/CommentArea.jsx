@@ -12,6 +12,7 @@ import Stars from "./Stars";
 
 const CommentArea = ({ postId }) => {
   const commentData = useSelector((state) => state.comment.content);
+  const token = useSelector((state) => state.token.token);
   const [showModalComment, setShowModalComment] = useState(false);
   const [showModiyComment, setShowModifyComment] = useState(false);
   const [newComment, setNewComment] = useState({
@@ -23,7 +24,7 @@ const CommentArea = ({ postId }) => {
 
   const handleComment = (e, postId) => {
     e.preventDefault();
-    dispatch(addComment(newComment));
+    dispatch(addComment(newComment, token));
     setShowModalComment(false);
     dispatch(fetchCommentPosts(postId));
   };
