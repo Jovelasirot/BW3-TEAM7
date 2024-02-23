@@ -125,6 +125,7 @@ export const deleteUserPost = (id, token, experience) => {
       if (response.ok) {
         const data = await response.json();
         dispatch({ type: DELETE_USER_POST, payload: data });
+        alert("Post eliminato con successo");
       } else {
         alert("Error");
       }
