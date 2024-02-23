@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addUserData } from "../redux/actions/actions";
 
 function EditProfile() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const token = useSelector((state) => state.token.token);
   const id = useSelector((state) => state.token.id);
+  const dispatch = useDispatch();
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -17,6 +19,7 @@ function EditProfile() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setShowModal(false);
+
     if (!selectedFile) {
       alert("Seleziona un file da caricare.");
       return;
@@ -39,6 +42,7 @@ function EditProfile() {
 
       if (response.ok) {
         alert("File caricato con successo.");
+        dispatch(addUserData(token));
       } else {
         alert("Si è verificato un errore durante il caricamento del file.");
       }
