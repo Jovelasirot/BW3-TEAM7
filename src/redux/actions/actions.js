@@ -394,7 +394,7 @@ export const querySearch = (query) => {
   };
 };
 
-export const addComment = (comment) => {
+export const addComment = (comment, token) => {
   return async (dispatch) => {
     try {
       dispatch({ type: TURN_ON_SPINNER });
@@ -402,8 +402,7 @@ export const addComment = (comment) => {
       const response = await fetch(myUrl, {
         method: "POST",
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
+          Authorization: "Bearer " + token,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(comment),

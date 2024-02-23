@@ -27,7 +27,7 @@ function Dino() {
             window.getComputedStyle(cactusRef.current).getPropertyValue("left")
           );
 
-          if (cactusLeft < 40 && cactusLeft > 0 && dinoTop >= 140) {
+          if (cactusLeft < 40 && cactusLeft > 0 && dinoTop >= 60) {
             setIsGameOver(true);
             clearInterval(handleCollision);
           } else {
