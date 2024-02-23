@@ -17,6 +17,7 @@ export const ADD_ALL_USERS_DATA = "ADD_ALL_USERS_DATA";
 export const ADD_COMMENTS_POSTS = "ADD_COMMENTS_POSTS";
 export const QUERY_SEARCH = "QUERY_SEARCH";
 export const CURRENT_COMPANY = "CURRENT_COMPANY";
+export const CURRENT_ID = "CURRENT_ID";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -36,6 +37,7 @@ export const addUserData = (token) => {
         console.log(data._id);
 
         dispatch({ type: ADD_USER_DATA, payload: data });
+        dispatch({ type: CURRENT_ID, payload: data._id });
       } else {
         alert("Error");
       }
@@ -151,7 +153,7 @@ export const saveHomePost = (token) => {
         const data = await response.json();
         const array = data.slice(-10);
         array.reverse();
-        console.log("array", array);
+
         dispatch({ type: SAVE_HOME_POST, payload: array });
       } else {
         alert("Error");
@@ -210,6 +212,8 @@ export const addHomePagePost = (token, text, image) => {
       if (response.ok) {
         const data = await response.json();
         dispatch(editImage(data._id, token, image));
+        alert("Post pubblicato con successo");
+
         console.log("data", data);
       } else {
         console.log("Error");
@@ -466,6 +470,33 @@ export const modifyComment = (commentID, updatedCommentData) => {
       }
     } catch (error) {
       console.log("Error:", error);
+    }
+  };
+};
+
+export const updatePost = (postId, updatedPostData, token) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify(updatedPostData),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        alert("Post modificato");
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      alert("Error:", error);
     }
   };
 };
