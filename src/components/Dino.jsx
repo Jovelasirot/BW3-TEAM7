@@ -27,14 +27,14 @@ function Dino() {
             window.getComputedStyle(cactusRef.current).getPropertyValue("left")
           );
 
-          if (cactusLeft < 40 && cactusLeft > 0 && dinoTop >= 60) {
+          if (cactusLeft < 70 && cactusLeft > -5 && dinoTop >= 50) {
             setIsGameOver(true);
             clearInterval(handleCollision);
           } else {
             setScore((prevScore) => prevScore + 1);
           }
         }
-      }, 10);
+      }, 150);
 
       return () => clearInterval(handleCollision);
     }
