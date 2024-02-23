@@ -29,7 +29,7 @@ function SidebarSx() {
                 src={profileImage !== undefined ? profileImage : ProfileMan}
                 alt=""
                 className="profilePic position-absolute top-100 start-50 translate-middle rounded-circle border border-solid border-black-50"
-                style={{ width: "60px", height: "60px" }}
+                style={{ width: "90px", height: "90px" }}
               />
             </div>
 
