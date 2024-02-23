@@ -163,7 +163,8 @@ export const saveHomePost = (token) => {
     }
   };
 };
-const editImage = (id, token, image) => {
+
+export const editImage = (id, token, image) => {
   return async (dispatch) => {
     try {
       dispatch({ type: TURN_ON_SPINNER });
