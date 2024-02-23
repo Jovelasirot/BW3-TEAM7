@@ -24,6 +24,12 @@ const robertaToken =
 const filippoToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTI0MTI0ZjYwNTAwMTkzN2Q0NjAiLCJpYXQiOjE3MDgzMzE1ODUsImV4cCI6MTcwOTU0MTE4NX0.Th8sgbTW3CgZXXpWkdeUdUQLB-SZvMattf9ctCL5H8M";
 
+const idJovel = "65d30da224f605001937d44b";
+const idFilippo = "65d3124124f605001937d460";
+const idPasquale = "65d34e8c24f605001937d483";
+const idMichela = "65d316c724f605001937d46c";
+const idRoberta = "65d3115a24f605001937d450";
+
 const ProfileTop = () => {
   const [randomCollegamenti, setRandomCollegamenti] = useState(0);
   const paramas = useParams();
@@ -31,33 +37,39 @@ const ProfileTop = () => {
   const id = paramas.username;
   const userData = useSelector((state) => state.user.content);
   const [user, setUser] = useState([]);
-
+  const currentUser = {};
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchUserData = () => {
-      let token;
+      let userData;
       switch (id) {
         case "Pasquale":
-          token = pasqualetoken;
+          currentUser.token = pasqualetoken;
+          currentUser.id = idPasquale;
+
           break;
         case "Jovel":
-          token = jovelToken;
+          currentUser.token = jovelToken;
+          currentUser.id = idJovel;
           break;
         case "Michela":
-          token = michelaToken;
+          currentUser.token = michelaToken;
+          currentUser.id = idMichela;
           break;
         case "Roberta":
-          token = robertaToken;
+          currentUser.token = robertaToken;
+          currentUser.id = idRoberta;
           break;
         case "Filippo":
-          token = filippoToken;
+          currentUser.token = filippoToken;
+          currentUser.id = idFilippo;
           break;
         default:
           console.log("no user");
           return;
       }
-      dispatch(addUserData(token));
+      dispatch(addUserData(currentUser.token));
       setUser(userData);
       const randomNum = Math.floor(Math.random() * 99) + 1;
       setRandomCollegamenti(randomNum);

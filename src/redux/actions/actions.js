@@ -17,6 +17,7 @@ export const ADD_ALL_USERS_DATA = "ADD_ALL_USERS_DATA";
 export const ADD_COMMENTS_POSTS = "ADD_COMMENTS_POSTS";
 export const QUERY_SEARCH = "QUERY_SEARCH";
 export const CURRENT_COMPANY = "CURRENT_COMPANY";
+export const CURRENT_ID = "CURRENT_ID";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -36,6 +37,7 @@ export const addUserData = (token) => {
         console.log(data._id);
 
         dispatch({ type: ADD_USER_DATA, payload: data });
+        dispatch({ type: CURRENT_ID, payload: data._id });
       } else {
         alert("Error");
       }
