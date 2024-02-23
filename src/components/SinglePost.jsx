@@ -67,6 +67,9 @@ const SinglePost = () => {
   };
   const handleUpdate = (postId, updatedContent) => {
     dispatch(updatePost(postId, updatedContent, token));
+    setTimeout(() => {
+      dispatch(saveHomePost(token));
+    }, 1500);
     setShowModal(false);
   };
   const handleModalOpen = (post) => {
