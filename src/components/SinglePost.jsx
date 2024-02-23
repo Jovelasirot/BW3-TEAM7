@@ -1,13 +1,23 @@
-import { useEffect } from "react";
-import { Button, Col, Container, Placeholder, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Modal,
+  Placeholder,
+  Row,
+} from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
+  addComment,
   deletePost,
   fetchAllUser,
   fetchCommentPosts,
   saveHomePost,
 } from "../redux/actions/actions";
+import CommentArea from "./CommentArea";
 
 const SinglePost = () => {
   const loading = useSelector((state) => state.post.loading);
@@ -36,16 +46,23 @@ const SinglePost = () => {
       dispatch(deletePost(postID, token));
       dispatch(saveHomePost(token));
     } else {
-      console.log("Il post è statp eliminato");
+      console.log("Il post è stato eliminato");
     }
   };
 
-  const comment = (postId) => {
-    dispatch(fetchCommentPosts(postId));
+  const [selectedPostId, setSelectedPostId] = useState(null);
+
+  const toggleCommentSection = (postId) => {
+    if (selectedPostId === postId) {
+      setSelectedPostId(null);
+    } else {
+      setSelectedPostId(postId);
+      dispatch(fetchCommentPosts(postId));
+    }
   };
 
-  // const allUserState = useSelector((state) => state.allUser.content);
-  // console.log(allUserState);
+  const commentData = useSelector((state) => state.comment.content);
+  console.log(commentData);
 
   return (
     <div>
@@ -95,13 +112,15 @@ const SinglePost = () => {
                       <i className="bi bi-person fs-1 me-2"></i>
                     )}
                   </div>
-                  <div className="ms-2">
+                  <div className="ms-2 w-100 ">
                     <p className="mb-0">{post.user.username}</p>
 
                     <p className="mb-0 text-muted">
                       {post.createdAt.split("T")[0]}
                     </p>
-                    <p className="mb-0">{post.text}</p>
+                    <span className="mb-0" style={{ wordWrap: "break-word" }}>
+                      {post.text}
+                    </span>
                   </div>
                 </div>
                 <div className="d-flex align-content-center ">
@@ -116,13 +135,6 @@ const SinglePost = () => {
                       }}
                     ></i>
                   </div>
-                  <Button
-                    onClick={() => {
-                      comment(post._id);
-                    }}
-                  >
-                    comments
-                  </Button>
                 </div>
               </Col>
               <Col xs={12}>
@@ -142,9 +154,12 @@ const SinglePost = () => {
                   </Col>
                   <Col>
                     {" "}
-                    <div className="d-flex justify-content-center addImg rounded-2 ">
+                    <div
+                      className="d-flex justify-content-center addImg rounded-2 "
+                      onClick={() => toggleCommentSection(post._id)}
+                    >
                       <i className="bi bi-chat-left-dots me-2 "></i>
-                      <span>Commenta</span>
+                      <span>Commenti</span>
                     </div>
                   </Col>
                   <Col>
@@ -163,6 +178,13 @@ const SinglePost = () => {
                   </Col>
                 </Row>
               </Col>
+              {selectedPostId === post._id && (
+                <CommentArea
+                  comments={commentData}
+                  postId={post._id}
+                  // handleComment={handleComment}
+                />
+              )}
             </Row>
           </Container>
         ))

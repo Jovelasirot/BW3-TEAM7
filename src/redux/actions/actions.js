@@ -15,6 +15,8 @@ export const SAVE_ALL_JOBS = "SAVE_ALL_JOBS";
 export const SAVE_CATEGORY_JOBS = "SAVE_CATEGORY_JOBS";
 export const ADD_ALL_USERS_DATA = "ADD_ALL_USERS_DATA";
 export const ADD_COMMENTS_POSTS = "ADD_COMMENTS_POSTS";
+export const QUERY_SEARCH = "QUERY_SEARCH";
+export const CURRENT_COMPANY = "CURRENT_COMPANY";
 
 const userEndPoint = "https://striveschool-api.herokuapp.com/api/profile/me";
 
@@ -334,15 +336,17 @@ export const fetchCommentPosts = (postID) => {
         method: "GET",
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3MTY4NDc2YTY0YjAwMTllZjE5ZDciLCJpYXQiOjE3MDg1OTQ4MjAsImV4cCI6MTcwOTgwNDQyMH0.dP8PfQiDUXJctVJmUd7eu4dnGxlD0O2fJvry3_qLXO4",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
         },
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("post Id", postID);
-        const lastComments = data.slice(-10);
-        dispatch({ type: ADD_COMMENTS_POSTS, payload: lastComments });
-        console.log("ultimi  commenti", lastComments);
+        const filteredComments = data.filter(
+          (comment) => comment.elementId === postID
+        );
+
+        dispatch({ type: ADD_COMMENTS_POSTS, payload: filteredComments });
+        console.log(" commenti", filteredComments);
       } else {
         alert("Error");
       }
@@ -350,6 +354,117 @@ export const fetchCommentPosts = (postID) => {
       console.log(error);
     } finally {
       dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const querySearch = (query) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const myUrl =
+        "https://strive-benchmark.herokuapp.com/api/jobs?search=" + query;
+      const response = await fetch(myUrl, {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3MTY4NDc2YTY0YjAwMTllZjE5ZDciLCJpYXQiOjE3MDg1OTQ4MjAsImV4cCI6MTcwOTgwNDQyMH0.dP8PfQiDUXJctVJmUd7eu4dnGxlD0O2fJvry3_qLXO4",
+        },
+      });
+      if (response.ok) {
+        const { data } = await response.json();
+
+        const search = data.slice(0, 10);
+        dispatch({ type: QUERY_SEARCH, payload: search });
+        console.log("primi risultati", search);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const addComment = (comment) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const myUrl = "https://striveschool-api.herokuapp.com/api/comments/";
+      const response = await fetch(myUrl, {
+        method: "POST",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(comment),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("comment added", data);
+        alert("comment added");
+      } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({ type: TURN_OFF_SPINNER });
+    }
+  };
+};
+
+export const deleteComment = (commentID) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/comments/${commentID}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        alert("Commento eliminato");
+      } else {
+        console.log("Error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const modifyComment = (commentID, updatedCommentData) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/comments/${commentID}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ3NjYzNTc2YTY0YjAwMTllZjFiNDEiLCJpYXQiOjE3MDg2MTUyMjEsImV4cCI6MTcwOTgyNDgyMX0.ZI2EnEGZSWCBxFLoXHsuqVQ-n29GTPxdSPTfDX6Z_O4",
+          },
+          body: JSON.stringify(updatedCommentData),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        alert("Commento modificato");
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.log("Error:", error);
     }
   };
 };
