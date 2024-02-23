@@ -16,7 +16,7 @@ function EditProfile() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setShowModal(false);
     if (!selectedFile) {
       alert("Seleziona un file da caricare.");
       return;
