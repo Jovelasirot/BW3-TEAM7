@@ -470,3 +470,30 @@ export const modifyComment = (commentID, updatedCommentData) => {
     }
   };
 };
+
+export const updatePost = (postId, updatedPostData, token) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: TURN_ON_SPINNER });
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify(updatedPostData),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        alert("Post modificato");
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      alert("Error:", error);
+    }
+  };
+};

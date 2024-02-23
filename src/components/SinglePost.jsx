@@ -16,6 +16,7 @@ import {
   fetchAllUser,
   fetchCommentPosts,
   saveHomePost,
+  updatePost,
 } from "../redux/actions/actions";
 import CommentArea from "./CommentArea";
 
@@ -24,11 +25,18 @@ const SinglePost = () => {
   const post = useSelector((state) => state.homePage.content);
   const currentUserData = useSelector((state) => state.user.content);
   const profileImage = useSelector((state) => state.user.content.image);
-
+  const [showModal, setShowModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState({
+    text: "",
+    _id: "",
+  });
   const token =
     useSelector((state) => state.token.token) ||
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTI0MTI0ZjYwNTAwMTkzN2Q0NjAiLCJpYXQiOjE3MDgzMzE1ODUsImV4cCI6MTcwOTU0MTE4NX0.Th8sgbTW3CgZXXpWkdeUdUQLB-SZvMattf9ctCL5H8M";
   const dispatch = useDispatch();
+  const [updatedContent, setUpdatedContent] = useState({
+    text: "",
+  });
   console.log("post", post);
 
   useEffect(() => {
@@ -59,6 +67,14 @@ const SinglePost = () => {
       setSelectedPostId(postId);
       dispatch(fetchCommentPosts(postId));
     }
+  };
+  const handleUpdate = (postId, updatedContent) => {
+    dispatch(updatePost(postId, updatedContent, token));
+  };
+  const handleModalOpen = (post) => {
+    setSelectedPost(post); // Memorizza il testo del post selezionato nello stato
+    console.log("post corrente", post);
+    setShowModal(true); // Apre il modal
   };
 
   const commentData = useSelector((state) => state.comment.content);
@@ -125,7 +141,12 @@ const SinglePost = () => {
                 </div>
                 <div className="d-flex align-content-center ">
                   <div>
-                    <i className="bi bi-three-dots me-2 "></i>
+                    <i
+                      className="bi bi-three-dots me-2 "
+                      onClick={() =>
+                        handleModalOpen({ text: post.text, _id: post._id })
+                      }
+                    ></i>
                   </div>
                   <div>
                     <i
@@ -189,6 +210,46 @@ const SinglePost = () => {
           </Container>
         ))
       )}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Form
+          className="mt-4 "
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleUpdate(selectedPost._id, selectedPost);
+          }}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Modifica il tuoi post</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Group className="mb-3">
+              <Form.Label>Scrivi il tuo testo modificato</Form.Label>
+              <Form.Control
+                value={selectedPost.text}
+                required
+                onChange={(e) => {
+                  setSelectedPost({
+                    ...selectedPost,
+                    text: e.target.value,
+                    _id: selectedPost._id,
+                  });
+                }}
+                id="comment"
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              // disabled={newComment.comment ? false : true}
+              variant="secondary"
+              type="submit"
+            >
+              Invia
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+      ;
     </div>
   );
 };
