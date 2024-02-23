@@ -34,9 +34,6 @@ const SinglePost = () => {
     useSelector((state) => state.token.token) ||
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTI0MTI0ZjYwNTAwMTkzN2Q0NjAiLCJpYXQiOjE3MDgzMzE1ODUsImV4cCI6MTcwOTU0MTE4NX0.Th8sgbTW3CgZXXpWkdeUdUQLB-SZvMattf9ctCL5H8M";
   const dispatch = useDispatch();
-  const [updatedContent, setUpdatedContent] = useState({
-    text: "",
-  });
   console.log("post", post);
 
   useEffect(() => {
@@ -70,11 +67,12 @@ const SinglePost = () => {
   };
   const handleUpdate = (postId, updatedContent) => {
     dispatch(updatePost(postId, updatedContent, token));
+    setShowModal(false);
   };
   const handleModalOpen = (post) => {
-    setSelectedPost(post); // Memorizza il testo del post selezionato nello stato
+    setSelectedPost(post);
     console.log("post corrente", post);
-    setShowModal(true); // Apre il modal
+    setShowModal(true);
   };
 
   const commentData = useSelector((state) => state.comment.content);
