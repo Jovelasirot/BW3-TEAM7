@@ -151,7 +151,7 @@ export const saveHomePost = (token) => {
         const data = await response.json();
         const array = data.slice(-10);
         array.reverse();
-        console.log("array", array);
+
         dispatch({ type: SAVE_HOME_POST, payload: array });
       } else {
         alert("Error");
@@ -209,6 +209,8 @@ export const addHomePagePost = (token, text, image) => {
       if (response.ok) {
         const data = await response.json();
         dispatch(editImage(data._id, token, image));
+        alert("Post pubblicato con successo");
+
         console.log("data", data);
       } else {
         console.log("Error");
