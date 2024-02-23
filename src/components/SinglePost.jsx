@@ -167,7 +167,7 @@ const SinglePost = () => {
                 <Row className="justify-content-between mt-2 ">
                   <Col>
                     <div className="d-flex justify-content-center addImg rounded-2  ">
-                      <i className="bi bi-hand-thumbs-up me-2 "></i>
+                      <i className="bi bi-hand-thumbs-up me-2"></i>
                       <span>Consiglia</span>
                     </div>
                   </Col>
