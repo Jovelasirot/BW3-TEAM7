@@ -8,7 +8,11 @@ import {
 } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addHomePagePost, saveHomePost } from "../redux/actions/actions";
+import {
+  addHomePagePost,
+  editImage,
+  saveHomePost,
+} from "../redux/actions/actions";
 import { useEffect, useState } from "react";
 
 const HomeMidTop = () => {

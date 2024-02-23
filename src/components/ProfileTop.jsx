@@ -65,7 +65,7 @@ const ProfileTop = () => {
 
     fetchUserData();
     if (userData.length !== 0) {
-      console.log(`${id} data`, userData);
+      console.log(`${userData.name} dati`, userData);
     }
   }, [id]);
 
