@@ -40,7 +40,9 @@ const HomeMidTop = () => {
     console.log(postContent);
     setPostContent({ text: "" });
     setShowModalPost(false);
-    dispatch(saveHomePost(token));
+    setTimeout(() => {
+      dispatch(saveHomePost(token));
+    }, 1500);
   };
 
   return (
